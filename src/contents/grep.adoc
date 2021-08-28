@@ -6,3 +6,13 @@
 # ref. https://qiita.com/notakaos/items/91d807f3151694e6c7a8
 cat $FILE | grep -v '^\s*#' | grep -v '^\s*$'
 ----
+
+options::
++
+--
+[horizontal]
+`-A n`:: 対象行の後ろ n 行を出力
+`-B n`:: 対象行の前 n 行を出力
+`-C n`:: 対象行の前後 n 行を出力
+`-i`:: 大文字小文字を無視
+--
