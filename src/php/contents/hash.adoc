@@ -7,4 +7,8 @@
 
 // MD5
 echo md5('string');
+
+// sha256
+php > echo hash('sha256', 'ffffffff');
+a44ba123189855990795e3260a64b34cdae6b29bf1c941818a34cba8bbc45575
 ----
