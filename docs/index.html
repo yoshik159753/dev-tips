@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_mtr_my_trace_route">mtr (my trace route)</a></li>
 <li><a href="#_firewall">firewall</a></li>
 <li><a href="#_grep">grep</a></li>
 <li><a href="#_nginx">nginx</a></li>
@@ -457,7 +458,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_pandoc">pandoc</a></li>
 <li><a href="#_image_magick">image magick</a></li>
 <li><a href="#_which">which</a></li>
-<li><a href="#_tmux">tmux</a></li>
+<li><a href="#_tmux">tmux</a>
+<ul class="sectlevel2">
+<li><a href="#_スクリプト">スクリプト</a></li>
+</ul>
+</li>
 <li><a href="#_sudo">sudo</a></li>
 <li><a href="#_rsyslog">rsyslog</a></li>
 <li><a href="#_cron">cron</a></li>
@@ -568,6 +573,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
+<h2 id="_mtr_my_trace_route">mtr (my trace route)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ref. <a href="https://atmarkit.itmedia.co.jp/ait/articles/1709/21/news019.html" class="bare">https://atmarkit.itmedia.co.jp/ait/articles/1709/21/news019.html</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">mtr www.google.co.jp</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-n</code>
+</td>
+<td class="hdlist2">
+<p>名前解決を行わない</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_firewall">firewall</h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -599,6 +640,53 @@ firewall-cmd --reload</code></pre>
 # ref. https://qiita.com/notakaos/items/91d807f3151694e6c7a8
 cat $FILE | grep -v '^\s*#' | grep -v '^\s*$'</code></pre>
 </div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-A n</code>
+</td>
+<td class="hdlist2">
+<p>対象行の後ろ n 行を出力</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-B n</code>
+</td>
+<td class="hdlist2">
+<p>対象行の前 n 行を出力</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-C n</code>
+</td>
+<td class="hdlist2">
+<p>対象行の前後 n 行を出力</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-i</code>
+</td>
+<td class="hdlist2">
+<p>大文字小文字を無視</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -956,7 +1044,10 @@ pandoc $srcmd --toc --reference-doc=$templatedocx -o $destdocx</code></pre>
 <pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">convert -geometry 50% $src $dest
 convert -geometry 200x200 $src $dest
 # 横幅自動、縦幅固定
-convert $src -resize x256 $dest</code></pre>
+convert $src -resize x256 $dest
+# サイズ上限を指定してリサイズ
+ファイルサイズと画像サイズの指定
+convert $src -resize x640 -define jpeg:extent=500kb $dest</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -971,6 +1062,12 @@ convert -crop $widthx$height+$x+$y $src $dest</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 十の位は品質で、一の位は圧縮形式。一の位は基本 0 でよさそう
 convert $src -quality 70 $dest</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ファイルサイズ上限指定</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">convert $src -define jpeg:extent=10kb $dest</code></pre>
 </div>
 </div>
 </div>
@@ -1179,6 +1276,22 @@ ESC
 </div>
 </dd>
 </dl>
+</div>
+<div class="sect2">
+<h3 id="_スクリプト">スクリプト</h3>
+<div class="listingblock">
+<div class="title">起動してパネル分割してコマンド実行するスクリプトサンプル</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 上下分割して上に syslog の tail 、下に google への ping を出力
+tmux new-session \; \
+  split-window -v \; \
+  select-pane -t 0 \; \
+  send-keys 'cd /var/log' C-m \; \
+  send-keys 'tail -f syslog' C-m \; \
+  select-pane -t 1 \; \
+  send-keys 'ping google.com' C-m \;</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -3282,6 +3395,8 @@ ssh-keyscan -H ${CONTAINER_IP} &gt;&gt; ~/.ssh/known_hosts</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 仮想環境を起動(抜けるときは exit or ctrl+D)
 pipenv shell
+# .env を指定する場合
+PIPENV_DOTENV_LOCATION=/path/to/.env pipenv shell
 
 # 仮想環境のパス
 pipenv --venv
@@ -3500,7 +3615,16 @@ duplicity verify file://${src_dir} ${target dir}</code></pre>
 <pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ダンプ
 mysqldump -h 127.0.0.1 -u user-name -p --single-transaction --ignore-table database.table --no-tablespaces database-name &gt; dump.sql
 # リストア
-mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
+mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql
+
+# 現在の接続しているスレッド数　その１
+show status like 'Threads_connected';
+# 現在の接続しているスレッド数　その２
+SELECT * FROM information_schema.PROCESSLIST;
+# プロセスリスト（処理中の接続）を表示する
+show processlist;
+# kill プロセス
+kill プロセスNo;</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -3644,6 +3768,33 @@ psql -h $host -p $port -U $username -d $databasename -f $dumpfile</code></pre>
 </td>
 <td class="hdlist2">
 <p>owner を付与しない。異なる role で DB をリストアするような場合に使える。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-t</code>
+</td>
+<td class="hdlist2">
+<p>ダンプテーブルを指定。複数指定可 (ex. <code>-t xxx -t yyy -t zzz</code>)</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">pg_restore options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-t</code>
+</td>
+<td class="hdlist2">
+<p>ダンプテーブルを指定。複数指定可 (ex. <code>-t xxx -t yyy -t zzz</code>)</p>
 </td>
 </tr>
 </table>
@@ -4036,7 +4187,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-14 21:14:08 +0900
+Last updated 2021-08-28 18:47:10 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

@@ -640,15 +640,14 @@ sudo chmod +x /usr/local/bin/php-cs-fixer</code></pre>
 <div class="title">ログ出力</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">// 配列で設定するのが大事
-logger([$var]);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">SQL 確認</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">$sql = DB::table('users')
-            -&gt;where('status', '&lt;&gt;', 1);
-logger($sql-&gt;toSql());</code></pre>
+logger([$var]);
+
+// sql と bind 変数を出力
+$sql = DB::table('users')-&gt;where('status', '&lt;&gt;', 1);
+logger([$sql-&gt;toSql(), $sql-&gt;getBindings()]);
+
+// laravel のデバッグバーに出力
+\Debugbar::info('debug!!!');</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -665,6 +664,13 @@ logger($sql-&gt;toSql());</code></pre>
 ...
 MAIL_DRIVER=log
 ...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">パスワードのハッシュ生成</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">&gt;&gt;&gt; \Hash::make('ffffffff');
+=&gt; "$2y$10$XYdOmfhh247f3vF5XInYe.ae1WBU9KpecyH.vwJpAdfxTj8BdBql."</code></pre>
 </div>
 </div>
 </div>
@@ -768,7 +774,11 @@ docker-compose exec workspace php artisan key:generate</code></pre>
 // php -a
 
 // MD5
-echo md5('string');</code></pre>
+echo md5('string');
+
+// sha256
+php &gt; echo hash('sha256', 'ffffffff');
+a44ba123189855990795e3260a64b34cdae6b29bf1c941818a34cba8bbc45575</code></pre>
 </div>
 </div>
 </div>
@@ -809,7 +819,7 @@ php -i</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-02-12 23:39:03 +0900
+Last updated 2021-08-28 17:45:55 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
