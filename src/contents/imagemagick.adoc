@@ -7,6 +7,9 @@ convert -geometry 50% $src $dest
 convert -geometry 200x200 $src $dest
 # 横幅自動、縦幅固定
 convert $src -resize x256 $dest
+# サイズ上限を指定してリサイズ
+ファイルサイズと画像サイズの指定
+convert $src -resize x640 -define jpeg:extent=500kb $dest
 ----
 
 [source,bash]
@@ -21,4 +24,10 @@ convert -crop $widthx$height+$x+$y $src $dest
 ----
 # 十の位は品質で、一の位は圧縮形式。一の位は基本 0 でよさそう
 convert $src -quality 70 $dest
+----
+
+[source,bash]
+.ファイルサイズ上限指定
+----
+convert $src -define jpeg:extent=10kb $dest
 ----
