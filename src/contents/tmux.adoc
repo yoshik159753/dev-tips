@@ -49,3 +49,18 @@ Enter:: ハイライトされた部分をコピーし、コピーモードを終
 q:: コピーモードを終了
 ESC:: ハイライトをキャンセル
 --
+
+=== スクリプト
+
+[source, bash]
+.起動してパネル分割してコマンド実行するスクリプトサンプル
+----
+# 上下分割して上に syslog の tail 、下に google への ping を出力
+tmux new-session \; \
+  split-window -v \; \
+  select-pane -t 0 \; \
+  send-keys 'cd /var/log' C-m \; \
+  send-keys 'tail -f syslog' C-m \; \
+  select-pane -t 1 \; \
+  send-keys 'ping google.com' C-m \;
+----
