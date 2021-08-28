@@ -8,6 +8,8 @@ pipenv は python のバージョン含めた仮想環境を構築する。(pyen
 ----
 # 仮想環境を起動(抜けるときは exit or ctrl+D)
 pipenv shell
+# .env を指定する場合
+PIPENV_DOTENV_LOCATION=/path/to/.env pipenv shell
 
 # 仮想環境のパス
 pipenv --venv
