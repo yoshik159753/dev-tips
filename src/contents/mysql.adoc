@@ -6,6 +6,15 @@
 mysqldump -h 127.0.0.1 -u user-name -p --single-transaction --ignore-table database.table --no-tablespaces database-name > dump.sql
 # リストア
 mysql -h 127.0.0.1 -u user-name -p database-name < dump.sql
+
+# 現在の接続しているスレッド数　その１
+show status like 'Threads_connected';
+# 現在の接続しているスレッド数　その２
+SELECT * FROM information_schema.PROCESSLIST;
+# プロセスリスト（処理中の接続）を表示する
+show processlist;
+# kill プロセス
+kill プロセスNo;
 ----
 
 共通::
