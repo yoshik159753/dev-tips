@@ -5,14 +5,13 @@
 ----
 // 配列で設定するのが大事
 logger([$var]);
-----
 
-[source,php]
-.SQL 確認
-----
-$sql = DB::table('users')
-            ->where('status', '<>', 1);
-logger($sql->toSql());
+// sql と bind 変数を出力
+$sql = DB::table('users')->where('status', '<>', 1);
+logger([$sql->toSql(), $sql->getBindings()]);
+
+// laravel のデバッグバーに出力
+\Debugbar::info('debug!!!');
 ----
 
 [source,php]
@@ -29,4 +28,11 @@ $job = $jobs->where('closing_at', '>=', Carbon::now())
 ...
 MAIL_DRIVER=log
 ...
+----
+
+[source,text]
+.パスワードのハッシュ生成
+----
+>>> \Hash::make('ffffffff');
+=> "$2y$10$XYdOmfhh247f3vF5XInYe.ae1WBU9KpecyH.vwJpAdfxTj8BdBql."
 ----
