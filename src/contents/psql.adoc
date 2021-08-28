@@ -18,8 +18,15 @@ pg_dump options::
 --
 [horizontal]
 `--no-owner`:: owner を付与しない。異なる role で DB をリストアするような場合に使える。
+`-t`:: ダンプテーブルを指定。複数指定可 (ex. `-t xxx -t yyy -t zzz`)
 --
 
+pg_restore options::
++
+--
+[horizontal]
+`-t`:: ダンプテーブルを指定。複数指定可 (ex. `-t xxx -t yyy -t zzz`)
+--
 
 [source,sql]
 ----
