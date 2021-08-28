@@ -9,6 +9,8 @@
 * link:php.html[php]
 * link:ubuntu.html[ubuntu]
 
+include::./contents/mytraceroute.adoc[]
+
 include::./contents/firewall.adoc[]
 
 include::./contents/grep.adoc[]

@@ -1,0 +1,15 @@
+== mtr (my trace route)
+
+ref. https://atmarkit.itmedia.co.jp/ait/articles/1709/21/news019.html
+
+[source,bash]
+----
+mtr www.google.co.jp
+----
+
+options::
++
+--
+[horizontal]
+`-n`::: 名前解決を行わない
+--
