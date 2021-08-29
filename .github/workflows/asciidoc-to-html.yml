@@ -1,0 +1,49 @@
+name: asciidoc to html
+
+on:
+  # main ブランチを push された場合にトリガ
+  # (期待としては、プルリクがマージされた場合のみ動かしたい)
+  push:
+    branches: [ main ]
+
+  # Actions タブからこのワークフローを実行することを許可する(?)
+  workflow_dispatch:
+
+jobs:
+  asciidoc-to-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      # チェックアウト ($GITHUB_WORKSPACE でディレクトリへアクセスできる)
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: install asciidoctor
+        run: gem install asciidoctor
+
+      # docs ディレクトリに adoc ファイルから html ファイルを生成
+      - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o index.html $GITHUB_WORKSPACE/src/main.adoc
+      - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o ubuntu.html $GITHUB_WORKSPACE/src/ubuntu/main.adoc
+      - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o python.html $GITHUB_WORKSPACE/src/python/main.adoc
+      - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o php.html $GITHUB_WORKSPACE/src/php/main.adoc
+
+      # アップロードできることを確認
+      # (やりたいことは github pages へのアップロードなのでコメントアウト)
+      # - name: upload html files
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: html-files
+      #     path: docs/*.html
+
+      # docs に生成した html ファイルをブランチ指定でコミットしてプッシュ
+      # (事前に gh-pages を作っておいた方がよさそう？)
+      - name: deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: docs
