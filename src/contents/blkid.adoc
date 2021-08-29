@@ -1,8 +1,0 @@
-== blkid
-
-ブロックデバイス情報について表示。
-
-[source,bash]
-----
-sudo blkid
-----

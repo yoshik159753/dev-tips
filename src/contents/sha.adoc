@@ -1,7 +1,0 @@
-== sha
-
-[source,bash]
-.ランダム文字列
-----
-date +"%s" | sha1sum | cut -b -40
-----

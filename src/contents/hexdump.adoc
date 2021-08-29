@@ -1,7 +1,0 @@
-== hexdump
-
-[source,bash]
-----
-# ファイルを1バイト単位、16進数とASCII文字でダンプする
-hexdump -C ${src}
-----

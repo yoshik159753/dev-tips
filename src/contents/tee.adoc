@@ -1,8 +1,0 @@
-== tee
-
-標準出力とファイルに書き出す。
-
-[source,bash]
-----
-cat hoge | tee output.log
-----

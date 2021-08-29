@@ -1,9 +1,0 @@
-== vscode
-
-[source,json]
-.vscode で読み込む env の指定
-----
-{
-  "python.envFile": "${workspaceFolder}/.env",
-}
-----

@@ -1,8 +1,0 @@
-== sql
-
-[source,bash]
-.sql で md5 を使ってランダムな文字列
-----
-# ref. https://lets.postgresql.jp/documents/technical/gen_data/1
-SELECT md5(clock_timestamp()::text) FROM generate_series(1,3);
-----

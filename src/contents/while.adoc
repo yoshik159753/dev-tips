@@ -1,7 +1,0 @@
-== while
-
-[source,bash]
-----
-# 無限ループ
-while true;do [コマンド1];[コマンド2];...;sleep [秒数];done
-----

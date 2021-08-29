@@ -1,8 +1,0 @@
-== dig
-
-ドメインや ip アドレス を DNS から調べる。
-
-[source,bash]
-----
-dig +trace ${domain or ipaddress}
-----
