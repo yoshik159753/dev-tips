@@ -463,6 +463,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_tmux">tmux</a>
 <ul class="sectlevel2">
 <li><a href="#_スクリプト">スクリプト</a></li>
+<li><a href="#_マウススクロール">マウススクロール</a></li>
 </ul>
 </li>
 <li><a href="#_sudo">sudo</a></li>
@@ -1215,6 +1216,14 @@ tmux kill-server</code></pre>
 </tr>
 <tr>
 <td class="hdlist1">
+<code>&lt;C-b&gt;Space</code>
+</td>
+<td class="hdlist2">
+<p>よしなにペインレイアウト切り替え</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
 <code>&lt;C-b&gt;[</code>
 </td>
 <td class="hdlist2">
@@ -1293,6 +1302,33 @@ tmux new-session \; \
   select-pane -t 1 \; \
   send-keys 'ping google.com' C-m \;</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_マウススクロール">マウススクロール</h3>
+<div class="paragraph">
+<p>ref. <a href="https://wiki.archlinux.jp/index.php/Tmux#.E3.82.B9.E3.82.AF.E3.83.AD.E3.83.BC.E3.83.AB.E3.81.AE.E5.95.8F.E9.A1.8C" class="bare">https://wiki.archlinux.jp/index.php/Tmux#.E3.82.B9.E3.82.AF.E3.83.AD.E3.83.BC.E3.83.AB.E3.81.AE.E5.95.8F.E9.A1.8C</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ cat .tmux.conf
+set -g mouse on
+bind -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
+bind -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>このモードでコピーするときは</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>shift 押しながらマウスで範囲選択</p>
+</li>
+<li>
+<p>ctrl+shift+c でコピー</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4189,7 +4225,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-08-29 06:09:46 UTC
+Last updated 2021-08-29 06:20:00 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
