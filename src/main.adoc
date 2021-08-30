@@ -5,9 +5,10 @@
 :source-highlighter: highlightjs
 :prewrap!:
 
-* link:python.html[python]
-* link:php.html[php]
-* link:ubuntu.html[ubuntu]
+* https://github.com/yoshik159753/dev-tips[github]
+* link:python.html[python tips]
+* link:php.html[php tips]
+* link:ubuntu.html[ubuntu tips]
 
 include::./contents/mytraceroute.adoc[]
 
