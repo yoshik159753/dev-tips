@@ -32,6 +32,7 @@ jobs:
       - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o python.html $GITHUB_WORKSPACE/src/python/main.adoc
       - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o php.html $GITHUB_WORKSPACE/src/php/main.adoc
       - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o asciidoc-cheatsheet.html $GITHUB_WORKSPACE/src/asciidoc-cheatsheet/asciidoc-cheatsheet.adoc
+      - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o unittest-cheatsheet.html $GITHUB_WORKSPACE/src/unittest-cheatsheet/main.adoc
 
       # アップロードできることを確認
       # (やりたいことは github pages へのアップロードなのでコメントアウト)
