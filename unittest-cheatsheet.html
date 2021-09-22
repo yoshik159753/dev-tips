@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>php knowledge</title>
+<title>試験観点 (単体寄り)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -441,143 +441,753 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>php knowledge</h1>
+<h1>試験観点 (単体寄り)</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_array">array</a></li>
-<li><a href="#_code_format">code format</a></li>
-<li><a href="#_laravel_tips">laravel tips</a></li>
-<li><a href="#_artisan_コマンド">artisan コマンド</a></li>
-<li><a href="#_laradock">laradock</a></li>
-<li><a href="#_ハッシュ化">ハッシュ化</a></li>
-<li><a href="#_暗号復号化">暗号/復号化</a></li>
-<li><a href="#_phpinfo_の表示">phpinfo の表示</a></li>
+<li><a href="#_クライアント観点_フロントエンド画面">クライアント観点 (フロントエンド、画面)</a>
+<ul class="sectlevel2">
+<li><a href="#_表示">表示</a>
+<ul class="sectlevel3">
+<li><a href="#_文字化け">文字化け</a></li>
+<li><a href="#_表示桁数表示方法フォーマット">表示桁数、表示方法、フォーマット</a></li>
+<li><a href="#_テーブル表示">テーブル表示</a></li>
+<li><a href="#_ページング">ページング</a></li>
+<li><a href="#_ソート">ソート</a></li>
+<li><a href="#_フォーム要素">フォーム要素</a></li>
+<li><a href="#_帳票">帳票</a></li>
+<li><a href="#_ウィンドウ">ウィンドウ</a></li>
+<li><a href="#_copyrightコピーライト">Copyright(コピーライト)</a></li>
+<li><a href="#_処理ボタン押下後など">処理(ボタン押下後など)</a></li>
+<li><a href="#_画面制御">画面制御</a></li>
+<li><a href="#_レスポンシブ">レスポンシブ</a></li>
+<li><a href="#_推奨ブラウザ">推奨ブラウザ</a></li>
+<li><a href="#_セキュリティ">セキュリティ</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_array">array</h2>
+<h2 id="_クライアント観点_フロントエンド画面">クライアント観点 (フロントエンド、画面)</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="title">foreach</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">foreach ($array as $key =&gt; $value) {
-    echo "\$array[$key] =&gt; $value.\n";
-}</code></pre>
+<div class="sect2">
+<h3 id="_表示">表示</h3>
+<div class="sect3">
+<h4 id="_文字化け">文字化け</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>文字化けが発生していないこと</p>
+</li>
+</ul>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">array_filter — コールバック関数を使用して、配列の要素をフィルタリングする</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// $value が奇数のものでフィルタリング
-// ARRAY_FILTER_USE_BOTH で value と key を扱える
-$array = ['a' =&gt; 1, 'b' =&gt; 2, 'c' =&gt; 3, 'd' =&gt; 4, 'e' =&gt; 5];
-print_r(array_filter($array, function ($value, $key) {
-    return $value &amp; 1;
-}, ARRAY_FILTER_USE_BOTH));
-
-// Array
-// (
-//     [a] =&gt; 1
-//     [c] =&gt; 3
-//     [e] =&gt; 5
-// )</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">array_map — 指定した配列の要素にコールバック関数を適用する</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// $value の値を２倍する
-$array = ['a' =&gt; 3, 'b' =&gt; 5, 'c' =&gt; 7];
-print_r(array_map(function ($value) {
-    return $value * 2;
-}, $array));
-
-// Array
-// (
-//     [a] =&gt; 6
-//     [b] =&gt; 10
-//     [c] =&gt; 14
-// )</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">array_map で zip 操作</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$a = [1, 2, 3, 4, 5];
-$b = ['one', 'two', 'three', 'four', 'five'];
-$c = ['uno', 'dos', 'tres', 'cuatro', 'cinco'];
-print_r(array_map(null, $a, $b, $c));
-
-// Array
-// (
-//     [0] =&gt; Array
-//         (
-//             [0] =&gt; 1
-//             [1] =&gt; one
-//             [2] =&gt; uno
-//         )
-//     ...
-// )</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">array_reduce — コールバック関数を用いて配列を普通の値に変更することにより、配列を再帰的に減らす</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$array = array(1, 2, 3, 4, 5);
-var_dump(array_reduce($array, function ($carry, $value) {
-    $carry *= $value;
-    return $carry;
-}, 10));
-
-// int(1200), because: 10*1*2*3*4*5
-// initial に 10 を指定しているため初回の $carry は 10 になる</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>その他の有用そうな関数たち。</p>
-</div>
+<div class="sect3">
+<h4 id="_表示桁数表示方法フォーマット">表示桁数、表示方法、フォーマット</h4>
 <div class="hdlist">
 <table>
 <tr>
 <td class="hdlist1">
-array_keys
+日時
 </td>
 <td class="hdlist2">
-<p>配列のキーすべて、あるいはその一部を返す</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>日時に関して期待した通り表示されていること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2018/04/30 01:23:45</p>
+</li>
+<li>
+<p>2018/4/30 1:23:45 (0を表示しないケース)</p>
+</li>
+<li>
+<p>2018年04年30日 01時23分45秒</p>
+</li>
+<li>
+<p>2018-04-30 01:23:45</p>
+</li>
+<li>
+<p>20180430012345 (区切りなしケース)</p>
+</li>
+<li>
+<p>4/30/2018, 1:23 p.m. (英語表記)</p>
+</li>
+<li>
+<p>Apr. 30, 2018 , at 1:23 p.m. (英語表記2)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </td>
 </tr>
 <tr>
 <td class="hdlist1">
-array_values
+郵便番号
 </td>
 <td class="hdlist2">
-<p>配列の全ての値を返す</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>郵便番号に関して期待した通り表示されていること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>〒012-3456</p>
+</li>
+<li>
+<p>012-3456 (記号なし)</p>
+</li>
+<li>
+<p>0123456 (ハイフンなし)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </td>
 </tr>
 <tr>
 <td class="hdlist1">
-array_merge
+電話番号
 </td>
 <td class="hdlist2">
-<p>ひとつまたは複数の配列をマージする</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>電話番号に関して期待した通り表示されていること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>090-1234-5678</p>
+</li>
+<li>
+<p>09012345678 (ハイフンなし)</p>
+</li>
+<li>
+<p>012-345-6789 (市外/内局番の考慮)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+金額
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>金額に関して期待した通り表示されていること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>￥1,000-</p>
+</li>
+<li>
+<p>1000 (記号やカンマなし)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+負数
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>負数に関して期待した通り表示されていること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>-1,000</p>
+</li>
+<li>
+<p>1,000 (赤字表示)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_テーブル表示">テーブル表示</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+項目(カラム)(列)
+</td>
+<td class="hdlist2">
+<p>テーブル項目に不足がないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+件数(行)
+</td>
+<td class="hdlist2">
+<p>期待した件数だけ表示されていること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+0件
+</td>
+<td class="hdlist2">
+<p>テーブルの表示件数が0件の場合は期待した通り表示されていること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ページング">ページング</h4>
+<div class="sect4">
+<h5 id="_ページング不可0件の場合">ページング不可(0件の場合)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>ページング対象の一覧の表示件数が0件の場合は期待した通り表示されていること</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ページング不可1pのみの場合">ページング不可(1Pのみの場合)</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+範囲
+</td>
+<td class="hdlist2">
+<p>ページングができない場合(1ページのみの場合など)はページャーの番号が期待した通り表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+前へボタン
+</td>
+<td class="hdlist2">
+<p>ページングができない場合(1ページのみの場合など)は前へボタンが期待した通り表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+次へボタン
+</td>
+<td class="hdlist2">
+<p>ページングができない場合(1ページのみの場合など)は次へボタンが期待した通り表示されること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ページング可複数ページの場合_最小値110pであれば1p">ページング可(複数ページの場合) / 最小値(1～10Pであれば1P)</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+範囲
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ中間値が選択されている場合にはページャーの番号が期待した通り表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+前へボタン
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ中間値が選択されている場合には前へボタンが期待した通り表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+次へボタン
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ中間値が選択されている場合には次へボタンが期待した通り表示されること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ページング可複数ページの場合_中間値110pであれば5p">ページング可(複数ページの場合) / 中間値(1～10Pであれば5P)</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+範囲
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ最小値が選択されている場合にはページャーの番号が期待した通り表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+前へボタン
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ最小値が選択されている場合には前へボタンが期待した通り表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+次へボタン
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ最小値が選択されている場合には次へボタンが期待した通り表示されること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ページング可複数ページの場合_最大値110pであれば10p">ページング可(複数ページの場合) / 最大値(1～10Pであれば10P)</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+範囲
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ最大値が選択されている場合にはページャーの番号が期待した通り表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+前へボタン
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ最大値が選択されている場合には前へボタンが期待した通り表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+次へボタン
+</td>
+<td class="hdlist2">
+<p>ページングができる、かつ最大値が選択されている場合には次へボタンが期待した通り表示されること</p>
 </td>
 </tr>
 </table>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_code_format">code format</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="_ソート">ソート</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+昇順
+</td>
+<td class="hdlist2">
+<p>昇順にソートされること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+降順
+</td>
+<td class="hdlist2">
+<p>降順にソートされること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_フォーム要素">フォーム要素</h4>
+<div class="sect4">
+<h5 id="_デフォルト表示">デフォルト表示</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+テキストボックス
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>テキストボックスに期待したデフォルト値が表示されていること。以下は例</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://the2g.com/post/visual-studio-code-php-formatter">Visual Studio CodeでPHPのフォーマッター</a></p>
+<p>登録時 : 空欄</p>
+</li>
+<li>
+<p>更新時 : 現在の登録されている値</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+テキストエリア
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>テキストエリアに期待したデフォルト値が表示されていること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>登録時 : 空欄</p>
+</li>
+<li>
+<p>更新時 : 現在の登録されている値</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+チェックボックス
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>チェックボックスに期待したデフォルト値が設定されること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>登録時 : 未選択</p>
+</li>
+<li>
+<p>更新時 : 現在の登録されている値</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ラジオボタン
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>ラジオボタンに期待したデフォルト値が設定されること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>登録時 : 未選択</p>
+</li>
+<li>
+<p>更新時 : 現在の登録されている値</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+セレクトボックス(ドロップボックス)
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>セレクトボックス(ドロップボックス)に期待したデフォルト値が設定されること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>登録時 : 未選択</p>
+</li>
+<li>
+<p>更新時 : 現在の登録されている値</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_プレースホルダ">プレースホルダ</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>テキストボックスのプレースホルダが期待した通り表示されていること</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_セレクトボックスの内容">セレクトボックスの内容</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>セレクトボックスの一覧が期待した通り表示されていること</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_制御">制御</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+入力値の保持
+</td>
+<td class="hdlist2">
+<p>各種入力欄に入力し次画面へ進んだのち、試験該当画面へ戻った場合には入力した値が保持されていること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ロール/権限
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>ロールや権限に応じてフォームが表示されていること</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>一般ユーザーの場合は特定のボタンが表示されていないこと</p>
+</li>
+<li>
+<p>管理者の場合は特定のボタンが表示されていること</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_帳票">帳票</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+レイアウト
+</td>
+<td class="hdlist2">
+<p>帳票のレイアウトに関して期待した通り表示されていること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ウィンドウ">ウィンドウ</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+ページタイトル
+</td>
+<td class="hdlist2">
+<p>ウィンドウのページタイトルが期待した通り表示されていること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+favicon
+</td>
+<td class="hdlist2">
+<p>ウィンドウのfaviconが期待した通り表示されていること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_copyrightコピーライト">Copyright(コピーライト)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Copyright(コピーライト)が期待した通り表示されていること</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_処理ボタン押下後など">処理(ボタン押下後など)</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+画面遷移
+</td>
+<td class="hdlist2">
+<p>期待通りの画面遷移が行われること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+画面更新
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>処理に伴う画面更新において、更新後の各種内容が期待した通りに表示されていること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>登録後に登録したデータが一覧に存在する</p>
+</li>
+<li>
+<p>更新後の該当項目が変更されている</p>
+</li>
+<li>
+<p>削除後は一覧に該当データが存在しない</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+メッセージ
+</td>
+<td class="hdlist2">
+<p>処理結果に対するメッセージが期待した通り表示されていること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_画面制御">画面制御</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+ポップアップウィンドウ
+</td>
+<td class="hdlist2">
+<p>期待した通りポップアップウィンドウが表示され、また内容が期待した通りの内容であること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+モーダルウィンドウ
+</td>
+<td class="hdlist2">
+<p>期待した通りモーダルウィンドウが表示され、また内容が期待した通りの内容であること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+タブオーダー
+</td>
+<td class="hdlist2">
+<p>タブまたはEnterキーでの項目遷移が期待した通り行われること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_レスポンシブ">レスポンシブ</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+PC(大) (1200px以上)
+</td>
+<td class="hdlist2">
+<p>1200px以上のサイズにて検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+PC (992~1119px)
+</td>
+<td class="hdlist2">
+<p>992~1119pxのサイズにて検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+タブレット (768~991px)
+</td>
+<td class="hdlist2">
+<p>768~991pxのサイズにて検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+スマートフォン (767以下)
+</td>
+<td class="hdlist2">
+<p>767px以下のサイズにて検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+画面サイズ変更
+</td>
+<td class="hdlist2">
+<p>画面サイズを変更しても画面崩れがないこと</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -586,234 +1196,120 @@ array_merge
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>PHP がインストール済みであること。</p>
-</div>
+境界値は bootstrap の値を参照
 </td>
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. 使用ライブラリ</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 60%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">項目</th>
-<th class="tableblock halign-left valign-top">値</th>
-<th class="tableblock halign-left valign-top">備考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">formatter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">php-cs-fixer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cs.symfony.com/" class="bare">https://cs.symfony.com/</a></p></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">インストール</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer
-sudo chmod +x /usr/local/bin/php-cs-fixer</code></pre>
 </div>
-</div>
-<div class="listingblock">
-<div class="title">vscode における setting.json</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "php.executablePath": "php",
-  "php-cs-fixer.executablePath": "php-cs-fixer",
-  "php-cs-fixer.onsave": true,
-  "php-cs-fixer.rules": "@PSR2",
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_laravel_tips">laravel tips</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="title">ログ出力</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// 配列で設定するのが大事
-logger([$var]);
-
-// sql と bind 変数を出力
-$sql = DB::table('users')-&gt;where('status', '&lt;&gt;', 1);
-logger([$sql-&gt;toSql(), $sql-&gt;getBindings()]);
-
-// laravel のデバッグバーに出力
-\Debugbar::info('debug!!!');</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">query builder で now を指定する場合は Carbon::now()</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$job = $jobs-&gt;where('closing_at', '&gt;=', Carbon::now())
-        -&gt;orderBy($sorter[0], $sorter[1])-&gt;paginate(24);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">メールをログに出力する</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text"># .env の MAIL_DRIVER に log を指定する
-...
-MAIL_DRIVER=log
-...</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">パスワードのハッシュ生成</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">&gt;&gt;&gt; \Hash::make('ffffffff');
-=&gt; "$2y$10$XYdOmfhh247f3vF5XInYe.ae1WBU9KpecyH.vwJpAdfxTj8BdBql."</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_artisan_コマンド">artisan コマンド</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># コマンドの一覧を見る
-php artisan list
-
-# migrate 用ファイルを生成する
-php artisan make:migration create_links_table --create=links
-# migration の実施状況を見る
-php artisan migrate:status
-# migrate する
-php artisan migrate
-# (denger!!!) all drop してから migrate する
-php artisan migrate:fresh
-# (denger!!!) all drop してから migrate して seed を埋め込む(テストデータをインサートする)
-php artisan migrate:fresh --seed
-# モデルとファクトリーの生成
-php artisan make:model --factory Link
-# xxx テーブル用の seeder 生成(テストデータ生成用ファイルの生成)
-php artisan make:seeder LinksTableSeeder
-# feature test (機能テスト) 用のファイルを生成
-php artisan make:test SubmitLinksTest
-# test の実行
-php artisan test</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_laradock">laradock</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="title">スタートアップガイド</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ref. https://laravel-news.com/your-first-laravel-application
-
-sudo apt update -y
-sudo apt install -y php composer
-
-composer create-project --prefer-dist laravel/laravel links "7.*"
-
-# 初期化したプロジェクトのソースを一式コミット
-git init
-git add .
-git commit
-
-# laradock のディレクトリを無視
-echo laradock &gt;&gt; .git/info/exclude
-
-# laradock の設定
-mkdir laradock
-cd laradock
-git init
-git remote origin add $laradock_repo
-git fetch
-git checkout master
-cp env-example .env
-# COMPOSE_PROJECT_NAME を変えて docker のコンテナ名がコンフリクトしないようにする
-vi .env
-
-# laravel の DATABASE の接続情報を laradock に合わせる
-vi ../.env
-
-# laradock 起動
-docker-compose up -d nginx mysql phpmyadmin
-
-# laravel 初期化
-docker-compose exec workspace composer install
-docker-compose exec workspace php artisan key:generate</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
+<div class="sect3">
+<h4 id="_推奨ブラウザ">推奨ブラウザ</h4>
+<div class="sect4">
+<h5 id="_バージョン">バージョン</h5>
+<div class="hdlist">
 <table>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<td class="hdlist1">
+最新
 </td>
-<td class="content">
-<div class="paragraph">
-<p>フロント側の <code>npm xxx</code> はコンテナの外でやった方がいいかも。
-コンテナには node が入ってないっぽいので。</p>
+<td class="hdlist2">
+<p>指定されたバージョン内で最も新しいバージョンにて検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+最古
+</td>
+<td class="hdlist2">
+<p>指定されたバージョン内で最も古いバージョンにて検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+</table>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_ブラウザ">ブラウザ</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+google chrome
+</td>
+<td class="hdlist2">
+<p>google chromeで検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+fire fox
+</td>
+<td class="hdlist2">
+<p>fire foxで検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ie
+</td>
+<td class="hdlist2">
+<p>internet explorerで検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+edge
+</td>
+<td class="hdlist2">
+<p>edgeで検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+safari
+</td>
+<td class="hdlist2">
+<p>safariで検証を行い画面崩れがないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+opera
+</td>
+<td class="hdlist2">
+<p>operaで検証を行い画面崩れがないこと</p>
 </td>
 </tr>
 </table>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_ハッシュ化">ハッシュ化</h2>
-<div class="sectionbody">
-<div class="listingblock">
+<div class="sect3">
+<h4 id="_セキュリティ">セキュリティ</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+エスケープ処理
+</td>
+<td class="hdlist2">
+<div class="openblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// インタラクティブシェルを起動
-// php -a
-
-// MD5
-echo md5('string');
-
-// sha256
-php &gt; echo hash('sha256', 'ffffffff');
-a44ba123189855990795e3260a64b34cdae6b29bf1c941818a34cba8bbc45575</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_暗号復号化">暗号/復号化</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>ref. <a href="https://www.php.net/manual/ja/function.openssl-encrypt.php" class="bare">https://www.php.net/manual/ja/function.openssl-encrypt.php</a></p>
+<p>入力値を表示するさいなどにはエスケープ処理が施されて表示されていること。以下は例</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// インタラクティブシェルを起動
-// php -a
-
-// 暗号化
-echo openssl_encrypt($plaintext, 'aes-256-ecb', $key);
-// 復号化
-echo openssl_decrypt($data, 'aes-256-ecb', $key);</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p>入力画面にて入力欄に <code>&lt;script&gt;alert('danger')&lt;/script&gt;</code> など入力したうえで確認画面へ遷移してもアラートが表示されないこと</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
+</td>
+</tr>
+</table>
 </div>
-<div class="sect1">
-<h2 id="_phpinfo_の表示">phpinfo の表示</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ブラウザから見る
-echo '&lt;?php phpinfo();' &gt; phpinfo.php
-
-# コマンドラインから見る
-php -i</code></pre>
 </div>
 </div>
 </div>
