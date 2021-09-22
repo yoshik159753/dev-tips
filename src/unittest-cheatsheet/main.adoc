@@ -1,0 +1,8 @@
+= 試験観点 (単体寄り)
+:toc: left
+:toclevels: 3
+:icons: font
+:source-highlighter: highlightjs
+:prewrap!:
+
+include::./contents/client.adoc[]

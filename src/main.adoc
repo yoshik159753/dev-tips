@@ -11,6 +11,7 @@
 ** link:php.html[php tips]
 ** link:ubuntu.html[ubuntu tips]
 ** link:asciidoc-cheatsheet.html[asciidoc cheatsheet]
+** link:unittest-cheatsheet.html[試験観点 (単体寄り)]
 
 include::./contents/mytraceroute.adoc[]
 
