@@ -1,0 +1,3 @@
+== クライアント観点 (フロントエンド、画面)
+
+include::./client-show.adoc[]
