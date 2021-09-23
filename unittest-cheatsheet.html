@@ -465,6 +465,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_セキュリティ">セキュリティ</a></li>
 </ul>
 </li>
+<li><a href="#_入力">入力</a>
+<ul class="sectlevel3">
+<li><a href="#_入力チェック">入力チェック</a></li>
+<li><a href="#_文字チェック">文字チェック</a></li>
+<li><a href="#_入力パターン">入力パターン</a></li>
+<li><a href="#_フォーム要素の制御">フォーム要素の制御</a></li>
+<li><a href="#_ブラウザ操作">ブラウザ操作</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1312,12 +1321,538 @@ opera
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_入力">入力</h3>
+<div class="sect3">
+<h4 id="_入力チェック">入力チェック</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+必須
+</td>
+<td class="hdlist2">
+<p>必須項目が未入力の場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+最小値(または桁数や文字数)
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>下記の観点より期待した通り処理されること</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>未満</p>
+</li>
+<li>
+<p>同値</p>
+</li>
+<li>
+<p>超過</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+最大値(または桁数や文字数)
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>下記の観点より期待した通り処理されること</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>未満</p>
+</li>
+<li>
+<p>同値</p>
+</li>
+<li>
+<p>超過</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+指定値(画像認証など)
+</td>
+<td class="hdlist2">
+<p>入力値が期待値以外の場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+メールアドレス
+</td>
+<td class="hdlist2">
+<p>フォーマットに違反している場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+URL
+</td>
+<td class="hdlist2">
+<p>フォーマットに違反している場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+電話番号(固定電話、携帯電話など)
+</td>
+<td class="hdlist2">
+<p>フォーマットに違反している場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+郵便番号(3桁-4桁など)
+</td>
+<td class="hdlist2">
+<p>フォーマットに違反している場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+日時
+</td>
+<td class="hdlist2">
+<p>フォーマットに違反している場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+存在しない日時
+</td>
+<td class="hdlist2">
+<p>存在しない日時を入力した場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+うるう年
+</td>
+<td class="hdlist2">
+<p>うるう年を入力した場合は期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+期間外の日時
+</td>
+<td class="hdlist2">
+<p>期間外の日時を入力した場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+日時の前後関係
+</td>
+<td class="hdlist2">
+<p>開始日時と終了日時が逆転している場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+クレジットカード
+</td>
+<td class="hdlist2">
+<p>フォーマットに違反している場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ファイル指定
+</td>
+<td class="hdlist2">
+<p>指定外のファイルをアップロードした場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ファイルサイズ
+</td>
+<td class="hdlist2">
+<p>ファイルサイズの指定を超過したファイルをアップロードした場合はエラーとなること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_文字チェック">文字チェック</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+全角(カナ、英数字、記号含む)
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること (<code>ヲンヰヱヴーヾ・</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+半角(記号)
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること (<code>,'" ./\=?!:;</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+半角(カタカナ)
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること (<code>ｧｰｭｿﾏﾞﾟ</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+環境依存文字
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること (<code>㌶Ⅲ⑳㏾☎㈱髙﨑</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+UTF-8とEUCでマッピングに差がある文字
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること (<code>¢£¬‖−〜―</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+サロゲートペア
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること (<code>𠀋𡈽𡌛𡑮𡢽𠮟𡚴𡸴𣇄𣗄</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+絵文字
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること (<code>😀🐱🚗</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+EUCのサーバで文字化けする文字
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること (<code>ソ能表</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+javascript
+</td>
+<td class="hdlist2">
+<p>入力欄へjavascriptの入力が禁止されている場合はエラーとなること (<code>&lt;script&gt;alert('danger')&lt;/script&gt;</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+HTML
+</td>
+<td class="hdlist2">
+<p>入力欄へHTMLの入力が禁止されている場合はエラーとなること (<code>&lt;font color="red"&gt;</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+HTML特殊文字
+</td>
+<td class="hdlist2">
+<p>入力欄へHTML特殊文字の入力が禁止されている場合はエラーとなること (<code>&lt;&copy;&amp;</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+データベースに対するインジェクション
+</td>
+<td class="hdlist2">
+<p>入力欄へSQLの入力が禁止されている場合はエラーとなること (<code>';delete from user_table;</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+改行
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+空白文字(半角、全角)
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+NULL(空、未入力)
+</td>
+<td class="hdlist2">
+<p>禁止されている場合はエラーとなること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_入力パターン">入力パターン</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+小数
+</td>
+<td class="hdlist2">
+<p>小数を入力し期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+負数
+</td>
+<td class="hdlist2">
+<p>負数を入力し期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+検索条件/前方一致
+</td>
+<td class="hdlist2">
+<p>対象の有無に応じて期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+検索条件/後方一致
+</td>
+<td class="hdlist2">
+<p>対象の有無に応じて期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+検索条件/部分一致
+</td>
+<td class="hdlist2">
+<p>対象の有無に応じて期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+検索条件/完全一致
+</td>
+<td class="hdlist2">
+<p>対象の有無に応じて期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+検索条件/期間指定
+</td>
+<td class="hdlist2">
+<p>対象の有無に応じて期待した通り処理されること。また時刻に関しては時分秒まで考慮すること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+検索条件/検索条件の組み合わせ
+</td>
+<td class="hdlist2">
+<p>複数の検索条件を組み合わせることができる場合には組み合わせたパターンを作成し、それぞれのパターンで期待した通り処理されること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_フォーム要素の制御">フォーム要素の制御</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+ボタン押下によるリクエスト二重送信
+</td>
+<td class="hdlist2">
+<p>確定ボタン押下後は二度押しができない、もしくは二度目がエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+パスワード入力欄
+</td>
+<td class="hdlist2">
+<p>パスワード入力欄の入力値は隠ぺいされて表示されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+セレクトボックス
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>下記の観点より期待した通り処理されること</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>単一選択</p>
+</li>
+<li>
+<p>複数選択</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+チェックボックス
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>下記の観点より期待した通り処理されること</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>単一選択</p>
+</li>
+<li>
+<p>複数選択</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>全選択が可能な場合はシナリオを考慮し期待した通り処理されること。以下は例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A&#8594;B&#8594;C&#8594;全解除&#8594;全選択&#8594;B解除</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+フォーム要素の有効化
+</td>
+<td class="hdlist2">
+<p>特定の条件を満たすことで有効となる要素がある場合には、条件を満たしたタイミングで要素が有効化されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+フォーム要素の無効化
+</td>
+<td class="hdlist2">
+<p>条件を満たすことで有効化した要素がある場合には、条件を満たしていない状態とすることで無効化されること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ブラウザ操作">ブラウザ操作</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+ブラウザバック後の再送信
+</td>
+<td class="hdlist2">
+<p>確定ボタン押下後の完了画面などにてブラウザバックし、再度確定ボタン押下した場合に再度リクエストが送信されないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+マルチウィンドウ(タブ)からの送信
+</td>
+<td class="hdlist2">
+<p>画面Aで確定ボタン押下直前まで処理を進め、その後画面Bを開き画面Aと同様の処理を進めて確定ボタン押下。その後、画面Aの確定ボタンを押下した場合にはリクエストが送信されないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+リロードによる再リクエスト送信
+</td>
+<td class="hdlist2">
+<p>処理完了後にリロードした場合に再度リクエストが送信されないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+未ログイン状態によるアクセス
+</td>
+<td class="hdlist2">
+<p>未ログイン状態にてURL指定でアクセスした場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+不正遷移
+</td>
+<td class="hdlist2">
+<p>登録&#8594;確認&#8594;完了といった画面遷移が必要な場合に、完了画面のURL指定でアクセスした場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ディレクトリトラバーサル
+</td>
+<td class="hdlist2">
+<p><code>../</code> などのURL指定でアクセスした場合にはエラーとなること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-22 08:15:35 UTC
+Last updated 2021-09-23 08:27:58 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
