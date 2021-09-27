@@ -5,4 +5,11 @@
 :source-highlighter: highlightjs
 :prewrap!:
 
+[NOTE]
+====
+記載レベルが「エラーとなること」や「期待した通り処理されること」などバラバラのため要件/仕様に応じて読み替えること
+====
+
 include::./contents/client.adoc[]
+
+include::./contents/server.adoc[]
