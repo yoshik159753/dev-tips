@@ -1,0 +1,3 @@
+== サーバー観点 (バックエンド)
+
+include::./server-request.adoc[]
