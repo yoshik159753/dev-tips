@@ -484,6 +484,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_入力チェック固定長ファイルマルチフォーマット">入力チェック(固定長ファイル(マルチフォーマット))</a></li>
 </ul>
 </li>
+<li><a href="#_レスポンス">レスポンス</a>
+<ul class="sectlevel3">
+<li><a href="#_http_ステータスコード">HTTP ステータスコード</a></li>
+<li><a href="#_レンダリング">レンダリング</a></li>
+<li><a href="#_算術演算">算術演算</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2160,12 +2167,58 @@ Key(Unique)項目の重複
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_レスポンス">レスポンス</h3>
+<div class="sect3">
+<h4 id="_http_ステータスコード">HTTP ステータスコード</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>期待した HTTP ステータスコードを返していること</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_レンダリング">レンダリング</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>期待した HTML を返していること</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_算術演算">算術演算</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+日時
+</td>
+<td class="hdlist2">
+<p>日時の計算結果が期待した通りであること(うるう年、存在しない日時、タイムゾーン、サマータイムなどの観点より)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+金額
+</td>
+<td class="hdlist2">
+<p>金額の計算結果が期待した通りであること(消費税などの観点より)</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-27 13:17:51 UTC
+Last updated 2021-09-28 12:47:49 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
