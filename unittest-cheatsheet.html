@@ -491,6 +491,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_算術演算">算術演算</a></li>
 </ul>
 </li>
+<li><a href="#_ファイル出力">ファイル出力</a>
+<ul class="sectlevel3">
+<li><a href="#_帳票_2">帳票</a></li>
+<li><a href="#_デリミタ区切りファイルcsvtsv_ファイルなど">デリミタ区切りファイル(CSV/TSV ファイルなど)</a></li>
+<li><a href="#_固定長ファイルマルチフォーマット">固定長ファイル(マルチフォーマット)</a></li>
+<li><a href="#_ログ">ログ</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2127,10 +2135,13 @@ Key(Unique)項目の重複
 </div>
 <div class="sect3">
 <h4 id="_入力チェック固定長ファイルマルチフォーマット">入力チェック(固定長ファイル(マルチフォーマット))</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">レコード長境界値</dt>
-<dd>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+レコード長境界値
+</td>
+<td class="hdlist2">
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
@@ -2148,8 +2159,9 @@ Key(Unique)項目の重複
 </div>
 </div>
 </div>
-</dd>
-</dl>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2213,12 +2225,131 @@ Key(Unique)項目の重複
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_ファイル出力">ファイル出力</h3>
+<div class="sect3">
+<h4 id="_帳票_2">帳票</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+レイアウト
+</td>
+<td class="hdlist2">
+<p>レイアウトが期待した通り表示されていること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_デリミタ区切りファイルcsvtsv_ファイルなど">デリミタ区切りファイル(CSV/TSV ファイルなど)</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+デリミタ
+</td>
+<td class="hdlist2">
+<p>デリミタが期待した通り出力されていること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ダブルクォーテーション
+</td>
+<td class="hdlist2">
+<p>ダブルクォーテーションで囲まれている or いないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ヘッダ/トレーラ(フッタ)
+</td>
+<td class="hdlist2">
+<p>ヘッダ/トレーラが期待した通り出力されていること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+エンコーディング(UTF-8やShift_JISなど)
+</td>
+<td class="hdlist2">
+<p>エンコーディングが期待した通りであること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_固定長ファイルマルチフォーマット">固定長ファイル(マルチフォーマット)</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+レコード長
+</td>
+<td class="hdlist2">
+<p>レコード長が期待した通り出力されていること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ヘッダ/トレーラ(フッタ)
+</td>
+<td class="hdlist2">
+<p>ヘッダ/トレーラが期待した通り出力されていること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+エンコーディング(UTF-8やShift_JISなど)
+</td>
+<td class="hdlist2">
+<p>エンコーディングが期待した通りであること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ログ">ログ</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+機密情報
+</td>
+<td class="hdlist2">
+<p>機密情報が含まれていないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+個人情報
+</td>
+<td class="hdlist2">
+<p>個人情報が含まれていないこと</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+暗号化
+</td>
+<td class="hdlist2">
+<p>機密情報、個人情報が暗号化されていること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-28 12:47:49 UTC
+Last updated 2021-10-01 13:11:41 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
