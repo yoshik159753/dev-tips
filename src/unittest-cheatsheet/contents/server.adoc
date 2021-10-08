@@ -5,3 +5,5 @@ include::./server-request.adoc[]
 include::./server-response.adoc[]
 
 include::./server-output-file.adoc[]
+
+include::./server-send-mail.adoc[]
