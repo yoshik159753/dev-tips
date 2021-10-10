@@ -502,6 +502,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_メール送信">メール送信</a></li>
 </ul>
 </li>
+<li><a href="#_ストレージ観点_db">ストレージ観点 (DB)</a>
+<ul class="sectlevel2">
+<li><a href="#_入力_2">入力</a>
+<ul class="sectlevel3">
+<li><a href="#_登録更新">登録、更新</a></li>
+<li><a href="#_削除">削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -2408,10 +2418,112 @@ Key(Unique)項目の重複
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_ストレージ観点_db">ストレージ観点 (DB)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_入力_2">入力</h3>
+<div class="sect3">
+<h4 id="_登録更新">登録、更新</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+一意制約
+</td>
+<td class="hdlist2">
+<p>登録(更新)する情報が、すでに登録済みの場合はエラーとなること (メールアドレスなど)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+主キー制約
+</td>
+<td class="hdlist2">
+<p>登録(更新)する情報が、すでに登録済みの場合はエラーとなること (ユニークなIDなど)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+外部キー制約
+</td>
+<td class="hdlist2">
+<p>登録(更新)する情報が別途管理されている情報に依存する場合、その情報が存在しない(管理されていない)場合はエラーとなること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+外部キー制約(CASCADE 観点)
+</td>
+<td class="hdlist2">
+<p>外部キー制約が CASCADE で設定されている場合、親のレコードを更新した場合は期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+外部キー制約(RESTRICT 観点)
+</td>
+<td class="hdlist2">
+<p>外部キー制約が RESTRICT で設定されている場合、親のレコードを更新した場合は期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ロールバック
+</td>
+<td class="hdlist2">
+<p>複数の情報を一括で登録(更新)したさいに、途中でエラーとなった場合には期待した通りロールバックされていること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+データが存在しない
+</td>
+<td class="hdlist2">
+<p>更新対象のデータが存在しない場合は期待した通り処理されること</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+暗号化
+</td>
+<td class="hdlist2">
+<p>機密情報や個人情報が暗号化されていること</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_削除">削除</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">外部キー制約(CASCADE 観点)</dt>
+<dd>
+<p>外部キー制約が CASCADE で設定されている場合、親のレコードを削除すると依存している子のレコードが削除されること</p>
+</dd>
+<dt class="hdlist1">外部キー制約(RESTRICT 観点)</dt>
+<dd>
+<p>外部キー制約が RESTRICT で設定されている場合、親のレコードを削除すると依存している子の状態に応じて期待した通り処理されること</p>
+</dd>
+<dt class="hdlist1">ロールバック</dt>
+<dd>
+<p>複数のデータを一括で削除したさいに、途中でエラーとなった場合には期待した通りロールバックされていること</p>
+</dd>
+<dt class="hdlist1">データが存在しない</dt>
+<dd>
+<p>削除対象のデータが存在しない場合は期待した通り処理されること</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-08 11:41:10 UTC
+Last updated 2021-10-10 14:02:02 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
