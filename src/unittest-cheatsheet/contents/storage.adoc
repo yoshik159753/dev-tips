@@ -1,0 +1,3 @@
+== ストレージ観点 (DB)
+
+include::./storage-insert.adoc[]

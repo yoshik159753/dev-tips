@@ -13,3 +13,5 @@
 include::./contents/client.adoc[]
 
 include::./contents/server.adoc[]
+
+include::./contents/storage.adoc[]
