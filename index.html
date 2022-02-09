@@ -2515,6 +2515,7 @@ seq ${BEGIN} ${END} | factor | cut -d" " -f2 | sort -nu</code></pre>
 <h2 id="_git">git</h2>
 <div class="sectionbody">
 <div class="listingblock">
+<div class="title">tag関係</div>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># tag 作成
 git tag v0.0.1 -m "message"
@@ -2525,6 +2526,20 @@ git tag --list
 git tag --list -n3
 # tag push (ブランチと一緒)
 git push $remote v0.0.1</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">管理下にあるファイルを無視したい(update-index)</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># merge, reset は処理する
+git update-index --[no-]assume-unchanged $path
+# merge, reset なども含む
+git update-index --[no-]skip-worktree $path
+
+# 設定確認
+# assume-unchanged 対象は状態を小文字で表示
+# skip-worktree 対象は状態を S と表示
+git ls-files -v</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -4309,7 +4324,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-09 11:19:35 UTC
+Last updated 2022-02-09 11:20:28 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
