@@ -1129,6 +1129,13 @@ convert $src -quality 70 $dest</code></pre>
 <pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">convert $src -define jpeg:extent=10kb $dest</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">画像比較</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># ref. https://gihyo.jp/admin/serial/01/ubuntu-recipe/0328?page=2
+composite -compose difference imageA.png imageB.png diff.png</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4290,7 +4297,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-09 11:16:45 UTC
+Last updated 2022-02-09 11:17:26 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
