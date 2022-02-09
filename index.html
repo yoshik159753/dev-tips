@@ -3613,6 +3613,22 @@ pyenv global 3.6.7
 pyenv local 3.6.7</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>期待する最新バージョンの python が含まれていない場合は pyenv をアップデートすると出てくるかも。</p>
+</div>
+<div class="paragraph">
+<p>ref. <a href="https://github.com/pyenv/pyenv-update">pyenv-update</a></p>
+</div>
+<div class="listingblock">
+<div class="title">pyenv-update</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># pyenv-update のインストール(インストール先はデフォルト運用の場合です)
+git clone https://github.com/pyenv/pyenv-update.git /home/username/.pyenv/plugins
+
+# アップデート
+pyenv update</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_その他">その他</h3>
@@ -4324,7 +4340,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-09 11:20:28 UTC
+Last updated 2022-02-09 11:21:00 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
