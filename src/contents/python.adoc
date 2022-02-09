@@ -1,5 +1,62 @@
 == python
 
+=== poetry
+
+https://python-poetry.org/docs/[poetry]
+
+[source,bash]
+----
+# プロジェクトディレクトリを新規作成
+poetry new poetry-demo
+# 既存プロジェクトを初期化(カレントディレクトリが対象となる、はず)
+poetry init
+
+# 仮想環境の一覧
+poetry env list
+# 仮想環境の作成(python のバージョンを指定)
+poetry env use python3.7
+# 仮想環境の作成(python のバージョンを指定(パス指定。pyenv のパスなどを指定する))
+poetry env use /full/path/to/python
+# 仮想環境の削除
+poetry env remove test-O3eWbxRl-py3.7
+
+# パッケージのインストール
+poetry add pendulum@^2.0.5
+# --dev で開発用にインストール
+poetry add --dev pytest
+# git リポジトリも指定可能
+poetry add git+https://github.com/sdispater/pendulum.git
+# pyproject.toml をもとにパッケージをインストール
+poetry install
+# --no-dev で開発用パッケージを除外
+poetry install --no-dev
+# 依存関係のアップデート(poetry.lock を削除し再 install の実行と同じ)
+poetry update
+# パッケージを指定してアップデート
+poetry update requests toml
+# パッケージを削除(dev 用の場合は --dev を付与)
+poetry remove requests
+
+# 仮想環境でスクリプト実行(ex: pytest)
+poetry run pytest
+# 仮想環境をアクティベート(新規 shell 起動)
+poetry shell
+# 仮想環境をディアクティベート(新規 shell のまま、新規 shell を閉じるなら exit する)
+poetry deactivate
+
+# 仮想環境もろもろ情報のパス(下記はpathのみ？)
+poetry env info --path
+
+# lock ファイルの情報をエクスポート
+poetry export -f requirements.txt --output requirements.txt
+----
+
+[source,bash]
+----
+# poetry インストール
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+----
+
 === pipenv
 
 pipenv は python のバージョン含めた仮想環境を構築する。(pyenv + venv)
