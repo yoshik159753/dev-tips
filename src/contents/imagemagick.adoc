@@ -31,3 +31,10 @@ convert $src -quality 70 $dest
 ----
 convert $src -define jpeg:extent=10kb $dest
 ----
+
+[source,bash]
+.画像比較
+----
+# ref. https://gihyo.jp/admin/serial/01/ubuntu-recipe/0328?page=2
+composite -compose difference imageA.png imageB.png diff.png
+----
