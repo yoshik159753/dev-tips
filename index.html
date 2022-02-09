@@ -1793,6 +1793,15 @@ find . -maxdepth 1 -name "*.log" -mtime +3 -ls -exec mv {} old/ \;</code></pre>
 </tr>
 </table>
 </div>
+<div class="listingblock">
+<div class="title">find結果を加工する</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">find ./ -mindepth 1 -maxdepth 1 -type f | while read filename
+do
+  echo "$filename"
+done</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4281,7 +4290,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-09 11:15:51 UTC
+Last updated 2022-02-09 11:16:45 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
