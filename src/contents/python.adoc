@@ -72,6 +72,20 @@ pyenv global 3.6.7
 pyenv local 3.6.7
 ----
 
+期待する最新バージョンの python が含まれていない場合は pyenv をアップデートすると出てくるかも。
+
+ref. https://github.com/pyenv/pyenv-update[pyenv-update]
+
+[source,bash]
+.pyenv-update
+----
+# pyenv-update のインストール(インストール先はデフォルト運用の場合です)
+git clone https://github.com/pyenv/pyenv-update.git /home/username/.pyenv/plugins
+
+# アップデート
+pyenv update
+----
+
 === その他
 
 gunicorn と uvicorn の連携::
