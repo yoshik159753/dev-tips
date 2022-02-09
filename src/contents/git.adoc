@@ -1,6 +1,7 @@
 == git
 
 [source,bash]
+.tag関係
 ----
 # tag 作成
 git tag v0.0.1 -m "message"
@@ -11,6 +12,20 @@ git tag --list
 git tag --list -n3
 # tag push (ブランチと一緒)
 git push $remote v0.0.1
+----
+
+[source,bash]
+.管理下にあるファイルを無視したい(update-index)
+----
+# merge, reset は処理する
+git update-index --[no-]assume-unchanged $path
+# merge, reset なども含む
+git update-index --[no-]skip-worktree $path
+
+# 設定確認
+# assume-unchanged 対象は状態を小文字で表示
+# skip-worktree 対象は状態を S と表示
+git ls-files -v
 ----
 
 === git author の上書き
