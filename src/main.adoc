@@ -13,6 +13,8 @@
 ** link:asciidoc-cheatsheet.html[asciidoc cheatsheet]
 ** link:unittest-cheatsheet.html[試験観点 (単体寄り)]
 
+include::./contents/touch.adoc[]
+
 include::./contents/mytraceroute.adoc[]
 
 include::./contents/firewall.adoc[]
