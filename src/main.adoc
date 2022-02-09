@@ -15,6 +15,8 @@
 
 include::./contents/direnv.adoc[]
 
+include::./contents/touch.adoc[]
+
 include::./contents/mytraceroute.adoc[]
 
 include::./contents/firewall.adoc[]
