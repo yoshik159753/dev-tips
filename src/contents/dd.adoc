@@ -22,3 +22,14 @@ sudo lsblk -p
 # zip を展開して書き込み
 unzip -p 2020-12-02-raspios-buster-armhf-lite.zip | sudo dd bs=4M of=/dev/sdb conv=fsync status=progress
 ----
+
+[source,bash]
+.ubuntu のイメージを書き込み
+----
+# 対象デバイスの確認
+sudo lsblk -p
+sudo fdisk -l
+
+# 書き込み
+sudo dd if=./ubuntu-ja-23.10-desktop-legacy-amd64.iso of=/dev/sda bs=4M conv=fsync status=progress
+----
