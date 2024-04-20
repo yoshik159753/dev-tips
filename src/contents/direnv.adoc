@@ -7,6 +7,12 @@ https://github.com/direnv/direnv[direnv]
 # .envrc に環境変数を記述
 echo export FOO=foo > .envrc
 
+# .envrc にロードする env ファイルを指定
+dotenv ./.env.development
+----
+
+[source,bash]
+----
 # 対象のパスで direnv を有効化
 direnv allow .
 # 対象のパスで direnv を無効化
@@ -18,3 +24,10 @@ direnv deny .
 * `.envrc` は `export FOO=foo` といったシェル的な書き方
 * `.env` は `FOO=foo` といった key-value 的な書き方
 ====
+
+[NOTE]
+====
+`envrc` は `env` 用の `run command` (略して `rc`)なのでスクリプト形式で書く必要がある。
+====
+
+ref: https://blog.kimulaco.dev/article/env-with-envrc/[.envと.envrcを両方使う方法]
