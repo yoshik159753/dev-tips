@@ -1,0 +1,20 @@
+== ln
+
+[source,bash]
+----
+# 通常
+ln -s src link_name
+
+# 上書き
+ln -nfs src link_name
+
+# 削除
+unlink src
+----
+
+[horizontal]
+`-s, --symbolic`:: ハードリンクの代わりにシンボリックリンクを作成する
+`-f, --force`:: リンクファイルと同じ名前のファイルがあっても強制的に上書きする
+`-n, --no-dereference`:: リンクの作成場所として指定したディレクトリがシンボリックリンクだった場合、参照先にリンクを作るのではなく、シンボリックリンクそのものを置き換える（-fと組み合わせて使用）
+
+ref: https://beyondjapan.com/blog/2022/10/why-sl-unlink/[「シンボリックリンクの削除」に unlinkコマンドを使う理由]
