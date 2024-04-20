@@ -52,3 +52,10 @@ EOS
   done
 done
 ----
+
+[source,bash]
+.一括連番リネームワイライナー
+----
+# shell の制限あるかも(bash only かも)
+i=1; for file in `ls`; do mv "$file" "$(printf "202301_%03d" "$i").${file##*.}"; i=$((i+1)); done
+----
