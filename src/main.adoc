@@ -17,6 +17,8 @@ include::./contents/ln.adoc[]
 
 include::./contents/nvm.adoc[]
 
+include::./contents/nodenv.adoc[]
+
 include::./contents/direnv.adoc[]
 
 include::./contents/touch.adoc[]
