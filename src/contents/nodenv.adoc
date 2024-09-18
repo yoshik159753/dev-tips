@@ -1,0 +1,21 @@
+== nodenv
+
+https://github.com/nodenv/nodenv[nodenv]
+
+[source,bash]
+----
+# 現在のシステムにインストールされているすべての Node.js のバージョンをリストアップ
+nodenv versions
+
+# インストール可能なすべての Node.js のバージョンをリストアップ
+nodenv install -l
+
+# 指定されたバージョンの Node.js をインストール
+nodenv install 15.14.0
+
+# プロジェクトごとに異なるNode.jsのバージョンを指定する
+nodenv local 15.14.0
+
+# 適用されている Node.js のバージョン確認は Node.js 側で確認
+node -v
+----
