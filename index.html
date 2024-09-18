@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.22">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <title>*nix tips</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -444,6 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_ln">ln</a></li>
 <li><a href="#_nvm">nvm</a></li>
+<li><a href="#_nodenv">nodenv</a></li>
 <li><a href="#_direnv">direnv</a></li>
 <li><a href="#_touch">touch</a></li>
 <li><a href="#_mtr_my_trace_route">mtr (my trace route)</a></li>
@@ -657,6 +658,32 @@ nvm use 16
 
 # 特定のバージョンの Node.js をインストール
 nvm install 12
+
+# 適用されている Node.js のバージョン確認は Node.js 側で確認
+node -v</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nodenv">nodenv</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/nodenv/nodenv">nodenv</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># 現在のシステムにインストールされているすべての Node.js のバージョンをリストアップ
+nodenv versions
+
+# インストール可能なすべての Node.js のバージョンをリストアップ
+nodenv install -l
+
+# 指定されたバージョンの Node.js をインストール
+nodenv install 15.14.0
+
+# プロジェクトごとに異なるNode.jsのバージョンを指定する
+nodenv local 15.14.0
 
 # 適用されている Node.js のバージョン確認は Node.js 側で確認
 node -v</code></pre>
@@ -4512,7 +4539,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-04-20 13:42:34 UTC
+Last updated 2024-09-18 14:09:52 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
