@@ -18,3 +18,10 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 # サーバーには `server.crt` と `server.key` を格納する
 # curl で叩くときは --insecure or -k が必要
 ----
+
+[source,bash]
+.secret 生成
+----
+# ランダムな 32byte を base64 で表示
+openssl rand -base64 32
+----
