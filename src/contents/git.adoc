@@ -28,6 +28,16 @@ git update-index --[no-]skip-worktree $path
 git ls-files -v
 ----
 
+[source,bash]
+.リネームしても追随して差分を表示する
+----
+git diff -M
+git diff --find-renames
+
+# 類似性インデックスの閾値をパーセンテージで指定できる
+git diff -M50%
+----
+
 === git author の上書き
 
 [source,bash]
