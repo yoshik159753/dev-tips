@@ -14,3 +14,16 @@ rsync --verbose --recursive --inplace --delete --force --compress --times --rsh=
 `--compress`:: 転送中のデータを圧縮する
 `--times`:: タイムスタンプを保持する
 `--rsh`:: rsh の代替を指定
+
+=== スラッシュの扱いについて
+
+ref: https://code.lioon.net/shell/how-to-set-paths-for-rsync.html[[Shell\] rsyncはスラッシュ/の有無で何が変わるのか？]
+
+[source,bash]
+----
+# ディレクトリ A の中身を B 配下に sync する
+rsync -av /SRC/A/ /DEST/B/
+
+# ディレクトリ A 自体を B 配下に sync する
+rsync -av /SRC/A /DEST/B/
+----
