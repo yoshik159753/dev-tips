@@ -483,7 +483,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_openssl">openssl</a></li>
 <li><a href="#_for">for</a></li>
 <li><a href="#_while">while</a></li>
-<li><a href="#_rsync">rsync</a></li>
+<li><a href="#_rsync">rsync</a>
+<ul class="sectlevel2">
+<li><a href="#_スラッシュの扱いについて">スラッシュの扱いについて</a></li>
+</ul>
+</li>
 <li><a href="#_tar">tar</a>
 <ul class="sectlevel2">
 <li><a href="#_ログ圧縮">ログ圧縮</a></li>
@@ -2097,6 +2101,13 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 # curl で叩くときは --insecure or -k が必要</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">secret 生成</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># ランダムな 32byte を base64 で表示
+openssl rand -base64 32</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2250,6 +2261,21 @@ while true;do [コマンド1];[コマンド2];...;sleep [秒数];done</code></pr
 </td>
 </tr>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_スラッシュの扱いについて">スラッシュの扱いについて</h3>
+<div class="paragraph">
+<p>ref: <a href="https://code.lioon.net/shell/how-to-set-paths-for-rsync.html">[Shell] rsyncはスラッシュ/の有無で何が変わるのか？</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># ディレクトリ A の中身を B 配下に sync する
+rsync -av /SRC/A/ /DEST/B/
+
+# ディレクトリ A 自体を B 配下に sync する
+rsync -av /SRC/A /DEST/B/</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2683,6 +2709,16 @@ git update-index --[no-]skip-worktree $path
 # assume-unchanged 対象は状態を小文字で表示
 # skip-worktree 対象は状態を S と表示
 git ls-files -v</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">リネームしても追随して差分を表示する</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">git diff -M
+git diff --find-renames
+
+# 類似性インデックスの閾値をパーセンテージで指定できる
+git diff -M50%</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -4542,7 +4578,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-09-19 13:29:07 UTC
+Last updated 2024-09-21 11:51:18 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
