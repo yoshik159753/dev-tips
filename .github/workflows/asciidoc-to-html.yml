@@ -35,18 +35,14 @@ jobs:
       - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o unittest-cheatsheet.html $GITHUB_WORKSPACE/src/unittest-cheatsheet/main.adoc
       - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o 5w2h.html $GITHUB_WORKSPACE/src/5w2h/5w2h.adoc
 
-      # アップロードできることを確認
-      # (やりたいことは github pages へのアップロードなのでコメントアウト)
-      # - name: upload html files
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: html-files
-      #     path: docs/*.html
+      - name: switch public branch
+        run: |
+          git sw public
 
-      # docs に生成した html ファイルをブランチ指定でコミットしてプッシュ
-      # (事前に gh-pages を作っておいた方がよさそう？)
-      - name: deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: docs
+      - name: commit and push
+        run: |
+          git config user.name yoshik159753-ci
+          git config user.email kai.outsider.777+github.ci@gmail.com
+          git add .
+          git commit -m "Add generated HTML files"
+          git push origin public
