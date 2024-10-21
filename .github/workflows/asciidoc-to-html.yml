@@ -37,6 +37,7 @@ jobs:
 
       - name: switch public branch
         run: |
+          git fetch origin public
           git switch public
 
       - name: commit and push
