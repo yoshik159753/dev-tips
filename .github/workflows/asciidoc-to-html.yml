@@ -37,7 +37,7 @@ jobs:
 
       - name: switch public branch
         run: |
-          git sw public
+          git switch public
 
       - name: commit and push
         run: |
