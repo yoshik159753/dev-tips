@@ -18,6 +18,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: switch branch and merge into public
+        run: |
+          git config user.name yoshik159753-ci
+          git config user.email kai.outsider.777+github.ci@gmail.com
+          git fetch origin main public
+          git switch public
+          git merge --no-ff -m "Merge branch 'origin/main' into public" origin/main
+
       - name: setup ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -35,11 +43,6 @@ jobs:
       - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o unittest-cheatsheet.html $GITHUB_WORKSPACE/src/unittest-cheatsheet/main.adoc
       - run: asciidoctor -D $GITHUB_WORKSPACE/docs -o 5w2h.html $GITHUB_WORKSPACE/src/5w2h/5w2h.adoc
 
-      - name: switch public branch
-        run: |
-          git fetch origin main public
-          git switch public
-
       - name: check for changes
         id: check_changes
         run: |
@@ -51,12 +54,9 @@ jobs:
             echo "changes=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: merge and commit and push
+      - name: commit and push
         if: steps.check_changes.outputs.changes == 'true'
         run: |
-          git config user.name yoshik159753-ci
-          git config user.email kai.outsider.777+github.ci@gmail.com
-          git merge --no-ff -m "Merge branch 'origin/main' into public" origin/main
           git add .
           git commit -m "Add generated HTML files"
           git push origin public
