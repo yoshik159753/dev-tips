@@ -17,6 +17,8 @@ jobs:
       # チェックアウト ($GITHUB_WORKSPACE でディレクトリへアクセスできる)
       - name: checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
 
       - name: switch branch and merge into public
         run: |
