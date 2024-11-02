@@ -4,6 +4,28 @@
 :icons: font
 :source-highlighter: highlightjs
 
+== us キーボードを使う
+
+=== キーボードの設定
+
+* レイアウト設定で capslock を control に上書き
+
+=== ubuntu の設定
+
+* Fcitx5 と Mozc をインストール
+
+[source,bash]
+----
+sudo apt install fcitx5 fcitx5-mozc
+----
+
+* システム設定の言語サポート設定を開き、キーボード入力に使う IM システムを Fcitx5 に変更
+** `システム設定 > 地域と言語 > システム > 言語サポート > キーボード入力に使うIMシステム`
+* 再起動
+* Fcitx5 の設定を開き入力メソッドに Mozc を追加
+* Fcitx5 の設定を開きタブのグローバルオプションの「入力メソッドの切り替え」に期待する半角全角切り替えを設定
+** `ctrl+space` とか
+
 == ubuntu の dcok の見た目を macos っぽく
 
 * ref. https://askubuntu.com/questions/966927/how-do-i-move-ubuntu-dock-to-bottom-on-ubuntu-17-10-and-later[How do I move Ubuntu dock to bottom on Ubuntu 17.10 and later?]
