@@ -38,17 +38,22 @@ git diff --find-renames
 git diff -M50%
 ----
 
-=== git author の上書き
+[source,bash]
+.古いコミットのファイルを別名でチェックアウトする
+----
+git show $COMMIT:$FILE > $NEW_FILENAME
+git cat-file blob $COMMIT:$FILE > $NEW_FILENAME
+----
 
 [source,bash]
+.git author の上書き
 ----
 # 文字列で username と email を指定する
 git commit --amend --author="username <user@example.com>"
 ----
 
-=== 差分のあるファイルを抽出してコピー
-
 [source,bash]
+.差分のあるファイルを抽出してコピー
 ----
 #!/bin/sh
 DEST=pickup
