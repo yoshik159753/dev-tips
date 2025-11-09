@@ -1,0 +1,31 @@
+{
+  "name": "dev-tips",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoshik159753/dev-tips.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yoshik159753/dev-tips/issues"
+  },
+  "homepage": "https://github.com/yoshik159753/dev-tips#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "eleventy-plugin-asciidoc": "^5.1.0",
+    "eleventy-plugin-toc": "^1.1.5"
+  }
+}
