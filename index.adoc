@@ -1,4 +1,7 @@
-== index.adoc
+---
+layout: "layouts/index.njk"
+---
+= index.adoc
 
-index.adoc
+index.adoc です。
 
