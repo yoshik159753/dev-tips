@@ -1,0 +1,9 @@
+---
+layout: "layouts/contents.njk"
+---
+= contents.adoc
+
+contents.adoc です。
+
+// component
+include::_src/component.adoc[]
