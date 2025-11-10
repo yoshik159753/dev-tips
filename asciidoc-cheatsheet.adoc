@@ -1,10 +1,14 @@
+---
+layout: "layouts/contents.njk"
+---
 = AsciiDoc Article Title
 Firstname Lastname <author@asciidoctor.org>
 1.0, July 29, 2014, Asciidoctor 1.5 article template
-:toc: left
-:toclevels: 5
+:source-highlighter: highlight.js
 :icons: font
-:stem: latexmath
+// :toc: left (toc の宣言。 asciidoctor 標準の toc を 11ty で使うのはハードル高し)
+// :toclevels: 5 (toc の宣言。 asciidoctor 標準の toc を 11ty で使うのはハードル高し)
+// :stem: latexmath (数式表示の宣言。 11ty では外部の js ライブラリをロードする必要ありの模様)
 :quick-uri: https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
 
 Content entered directly below the header but before the first section heading is called the preamble.

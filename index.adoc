@@ -3,5 +3,5 @@ layout: "layouts/index.njk"
 ---
 = dev tips
 
-* link:/contents[sample]
+* link:/asciidoc-cheatsheet[asciidoc-cheatsheet]
 * link:https://github.com/yoshik159753/dev-tips[github]
