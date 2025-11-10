@@ -1,6 +1,7 @@
+---
+layout: "layouts/contents.njk"
+---
 = ubuntu tips
-:toc: left
-:toclevels: 5
 :icons: font
 :source-highlighter: highlightjs
 

@@ -4,5 +4,6 @@ layout: "layouts/index.njk"
 = dev tips
 
 * link:/nix[*nix tips]
+* link:/ubuntu[ubuntu tips]
 * link:/asciidoc-cheatsheet[asciidoc-cheatsheet]
 * link:https://github.com/yoshik159753/dev-tips[github]
