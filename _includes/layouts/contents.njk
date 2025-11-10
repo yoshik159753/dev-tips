@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/asciidoctor.css">
 
   <title>{{ title }}</title>
@@ -19,7 +21,7 @@
         <li><a href="/">To Index</a></li>
       </ul>
       <div id="toctitle">Table of Contents</div>
-      {{ content | toc | safe }}
+      {{ content | asciidocToc | safe }}
     </div>
 
     </div>
@@ -32,5 +34,7 @@
   </div> <div id="footer">
     </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
 </body>
 </html>
