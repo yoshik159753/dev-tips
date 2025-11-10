@@ -1,3 +1,0 @@
-== component.adoc
-
-component.adoc です。

@@ -3,5 +3,11 @@ layout: "layouts/index.njk"
 ---
 = dev tips
 
+* link:/nix[*nix tips]
+* link:/python[python knowledge]
+* link:/php[php knowledge]
+* link:/ubuntu[ubuntu tips]
+* link:/5w2h[5w2h]
+* link:/unittest-cheatsheet[unittest-cheatsheet]
 * link:/asciidoc-cheatsheet[asciidoc-cheatsheet]
 * link:https://github.com/yoshik159753/dev-tips[github]

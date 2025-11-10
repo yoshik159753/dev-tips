@@ -26,6 +26,7 @@ handle() {
     key="$1"
     case "$key" in
     dev)
+      rm -rf _site
       npm run dev
       exit 0
       ;;
