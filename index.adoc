@@ -4,6 +4,7 @@ layout: "layouts/index.njk"
 = dev tips
 
 * link:/nix[*nix tips]
+* link:/php[php knowledge]
 * link:/ubuntu[ubuntu tips]
 * link:/5w2h[5w2h]
 * link:/asciidoc-cheatsheet[asciidoc-cheatsheet]

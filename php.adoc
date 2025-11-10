@@ -1,0 +1,22 @@
+---
+layout: "layouts/contents.njk"
+---
+= php knowledge
+:icons: font
+:source-highlighter: highlightjs
+
+include::src/php/array.adoc[]
+
+include::src/php/code_format.adoc[]
+
+include::src/php/laravel.adoc[]
+
+include::src/php/artisan.adoc[]
+
+include::src/php/laradock.adoc[]
+
+include::src/php/hash.adoc[]
+
+include::src/php/encrypt.adoc[]
+
+include::src/php/phpinfo.adoc[]
