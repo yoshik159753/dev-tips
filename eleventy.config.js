@@ -1,5 +1,5 @@
 const eleventyAsciidoc = require("eleventy-plugin-asciidoc");
-const pluginTOC = require("eleventy-plugin-toc");
+const pluginTOC = require("./plugins/eleventy-plugin-asciidoc-toc/eleventy-plugin-asciidoc-toc");
 
 module.exports = function(eleventyConfig) {
 

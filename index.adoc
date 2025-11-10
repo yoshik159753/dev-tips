@@ -1,7 +1,7 @@
 ---
 layout: "layouts/index.njk"
 ---
-= index.adoc
+= dev tips
 
-index.adoc です。
-
+* link:/asciidoc-cheatsheet[asciidoc-cheatsheet]
+* link:https://github.com/yoshik159753/dev-tips[github]
