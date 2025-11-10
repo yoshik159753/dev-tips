@@ -1,7 +1,7 @@
 ---
 layout: "layouts/index.njk"
 ---
-= index.adoc
+= dev tips
 
-index.adoc です。
-
+* link:/contents[sample]
+* link:https://github.com/yoshik159753/dev-tips[github]
