@@ -5,5 +5,6 @@ layout: "layouts/index.njk"
 
 * link:/nix[*nix tips]
 * link:/ubuntu[ubuntu tips]
+* link:/5w2h[5w2h]
 * link:/asciidoc-cheatsheet[asciidoc-cheatsheet]
 * link:https://github.com/yoshik159753/dev-tips[github]

@@ -1,6 +1,7 @@
+---
+layout: "layouts/contents.njk"
+---
 = 5W2H
-:toc: left
-:toclevels: 5
 :icons: font
 :source-highlighter: highlightjs
 :prewrap!:
