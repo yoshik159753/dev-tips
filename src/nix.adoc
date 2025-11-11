@@ -6,6 +6,8 @@ layout: "layouts/contents.njk"
 :source-highlighter: highlight.js
 :prewrap!:
 
+include::articles/nix/sh.adoc[]
+
 include::articles/nix/ln.adoc[]
 
 include::articles/nix/nvm.adoc[]
