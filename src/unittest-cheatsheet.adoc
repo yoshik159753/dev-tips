@@ -11,8 +11,8 @@ layout: "layouts/contents.njk"
 記載レベルが「エラーとなること」や「期待した通り処理されること」などバラバラのため要件/仕様に応じて読み替えること
 ====
 
-include::src/unittest-cheatsheet/client.adoc[]
+include::articles/unittest-cheatsheet/client.adoc[]
 
-include::src/unittest-cheatsheet/server.adoc[]
+include::articles/unittest-cheatsheet/server.adoc[]
 
-include::src/unittest-cheatsheet/storage.adoc[]
+include::articles/unittest-cheatsheet/storage.adoc[]

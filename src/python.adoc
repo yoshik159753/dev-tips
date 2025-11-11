@@ -1,0 +1,18 @@
+---
+layout: "layouts/contents.njk"
+---
+= python knowledge
+:icons: font
+:source-highlighter: highlightjs
+
+include::articles/python/for.adoc[]
+
+include::articles/python/vscode.adoc[]
+
+include::articles/python/code-format.adoc[]
+
+include::articles/python/code-style.adoc[]
+
+include::articles/python/pytest.adoc[]
+
+include::articles/python/alembic.adoc[]
