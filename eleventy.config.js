@@ -41,7 +41,7 @@ module.exports = function(eleventyConfig) {
   return {
     // 入力ディレクトリ (デフォルトは ".")
     dir: {
-      input: ".",
+      input: "src",
       output: "_site"
     }
   };
