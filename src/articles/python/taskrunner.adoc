@@ -1,0 +1,91 @@
+== Task Runner
+
+.全体を表示
+[%collapsible]
+====
+
+[source,python]
+----
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import argparse
+import sys
+from logging import (
+    CRITICAL,
+    DEBUG,
+    ERROR,
+    INFO,
+    WARNING,
+    StreamHandler,
+    getLevelName,
+    getLogger,
+)
+from logging import Formatter as logFormatter
+
+
+PJ_NAME = "PJ_NAME"
+
+log_handler = StreamHandler(stream=sys.stderr)
+log_handler.setLevel(DEBUG)
+log_handler.setFormatter(
+    logFormatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(filename)s(%(lineno)d):%(funcName)s - %(message)s",
+    ),
+)
+logger = getLogger("{}".format(PJ_NAME))
+logger.setLevel(DEBUG)
+logger.addHandler(log_handler)
+
+
+def main(username: str):
+    logger.info("=== RUN! =================")
+
+    logger.info("username: [%s]", username)
+
+    logger.info("================= FINISH! ===")
+
+
+if __name__ == "__main__":
+    args_parser = argparse.ArgumentParser(description=PJ_NAME)
+    args_parser.add_argument(
+        "-u",
+        "--username",
+        type=str,
+        default="username",
+        help="ユーザーネーム (default: username)",
+    )
+    args_parser.add_argument(
+        "-l",
+        "--log-level",
+        type=str,
+        choices=[
+            getLevelName(CRITICAL),
+            getLevelName(ERROR),
+            getLevelName(WARNING),
+            getLevelName(INFO),
+            getLevelName(DEBUG),
+        ],
+        default=getLevelName(INFO),
+        help="ログレベル (default: INFO)",
+    )
+    args = args_parser.parse_args()
+
+    logger.setLevel(args.log_level)
+
+    if args.log_level != getLevelName(DEBUG) or input("実行するなら y を入力: ") == "y":
+        main(args.username)
+    else:
+        logger.info("キャンセル")
+        sys.exit(0)
+----
+====
+
+
+
+
+
+
+
+
+
