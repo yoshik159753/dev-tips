@@ -1,10 +1,12 @@
-const eleventyAsciidoc = require("eleventy-plugin-asciidoc");
-const pluginTOC = require("./plugins/eleventy-plugin-asciidoc-toc/eleventy-plugin-asciidoc-toc");
+import pluginTOC from "./plugins/eleventy-plugin-asciidoc-toc/eleventy-plugin-asciidoc-toc.js";
 
-module.exports = function(eleventyConfig) {
+export default async function(eleventyConfig) {
+
+  // CommonJSモジュールを動的にインポート
+  const eleventyAsciidoc = await import("eleventy-plugin-asciidoc");
 
   // Asciidoctor プラグインを登録します
-  eleventyConfig.addPlugin(eleventyAsciidoc, {
+  eleventyConfig.addPlugin(eleventyAsciidoc.default || eleventyAsciidoc.configFunction, {
     // 'include' を有効にするため、セーフモードを unsafe に変更する
     safe: 'unsafe',
     // (オプション) Asciidoctor に渡す属性などを指定できます
@@ -45,4 +47,4 @@ module.exports = function(eleventyConfig) {
       output: "_site"
     }
   };
-};
+}

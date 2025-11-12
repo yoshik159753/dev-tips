@@ -7,7 +7,7 @@
  * 正しく認識して階層的なTOCを生成します。
  */
 
-const cheerio = require('cheerio');
+import * as cheerio from 'cheerio';
 
 /**
  * デフォルトオプション
@@ -222,7 +222,7 @@ const asciidocTocFilter = (content, userOptions = {}) => {
 /**
  * Eleventyプラグインとしてエクスポート
  */
-module.exports = function(eleventyConfig, userOptions = {}) {
+export default function(eleventyConfig, userOptions = {}) {
   const options = { ...defaultOptions, ...userOptions };
 
   // フィルタを登録
@@ -244,4 +244,4 @@ module.exports = function(eleventyConfig, userOptions = {}) {
 
     return asciidocTocFilter(content, mergedOptions);
   });
-};
+}

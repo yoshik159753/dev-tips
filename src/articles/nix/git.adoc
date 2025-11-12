@@ -46,6 +46,27 @@ git cat-file blob $COMMIT:$FILE > $NEW_FILENAME
 ----
 
 [source,bash]
+.別ディレクトリにチェックアウトして作業する
+----
+# 作業開始時に add して終了時に remove
+# list で状態確認
+# move でディレクトリの移動
+# repair で不整合の修復(手動で作業ディレクトリを mv した場合など)
+# prune でクリーンアップ(手動で作業ディレクトリを rm した場合など)
+# lock で prune を抑止。 unlock で解除
+
+git worktree add ../hotfix-dir hotfix
+git worktree list
+git worktree remove hotfix-dir
+----
+
+[source,bash]
+.空コミット(初回も有効)
+----
+git commit --allow-empty -m "first commit"
+----
+
+[source,bash]
 .git author の上書き
 ----
 # 文字列で username と email を指定する
