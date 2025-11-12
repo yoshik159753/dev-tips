@@ -25,3 +25,24 @@ do
   echo "$filename"
 done
 ----
+
+[source,bash]
+.対象と除外の指定
+----
+# ./aaa ディレクトリを対象とする
+# ./bbb ディレクトリを対象とする
+# ccc.json を除外する
+# ./aaa/bbb ディレクトリを除外する
+# ./aaa/ccc/ddd.json を除外する
+# pycache という名前のディレクトリ全て除外
+# ファイル名に _test.py を含むファイル全て除外
+
+find ./aaa ./bbb \
+\( -path ./aaa/bbb -o -name __pycache__ \) -prune \
+-o \
+\( -type f \
+  ! -name "ccc.json" \
+  ! -path "./aaa/ccc/ddd.json" \
+  ! -name "*_test.py" \
+\) -print
+----
