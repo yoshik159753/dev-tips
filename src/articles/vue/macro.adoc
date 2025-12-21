@@ -1,0 +1,134 @@
+== コンパイラマクロ
+
+defineProps::
++
+親コンポーネントから渡される props を定義する
++
+[source,vue]
+----
+<script setup>
+// 基本的な定義
+const props = defineProps({
+  message: String,
+  count: {
+    type: Number,
+    default: 0
+  }
+});
+
+// TypeScriptでの型ベース定義
+const props = defineProps<{
+  message: string,
+  count?: number
+}>();
+</script>
+----
+
+defineEmits::
++
+親コンポーネントに対してイベントを発行(emit)するために許可するイベント名を定義する。
++
+[source,vue]
+----
+<script setup>
+const emit = defineEmits(['updateCount', 'submitForm']);
+
+function handleClick() {
+  emit('updateCount', 1);
+}
+</script>
+----
+
+defineExpose::
++
+`script setup` を使うとコンポーネントはデフォルトで閉じられ(プライベートに)なる。
+このマクロは、親コンポーネントが ref を介してアクセスできるプロパティやメソッドを **明示的に公開(expose)** する。
++
+[source,vue]
+----
+<script setup>
+import { ref } from 'vue';
+
+const internalValue = ref(0);
+
+// openModalメソッドだけを親から呼び出せるように公開する
+defineExpose({
+  openModal: () => {
+    internalValue.value = 100;
+  }
+});
+</script>
+----
+
+defineModel (Vue 3.4+)::
++
+コンポーネントで v-model を使うための双方向バインディングを非常に簡単に実装できるようにするマクロ。
+以前の props と emits を組み合わせた実装の簡素化版。
++
+[source,vue]
+----
+<script setup>
+// 'modelValue' という名前の v-model を定義する
+const model = defineModel();
+
+// 'count' という名前の v-model を定義する (例: v-model:count)
+const count = defineModel('count');
+
+function update() {
+  model.value = 'new value'; // 親コンポーネントの値も更新される
+}
+</script>
+----
+
+defineOptions (Vue 3.3+)::
++
+`<script setup>` を使いながらも name(コンポーネント名) や inheritAttrs など、従来の Options API でしか設定できなかったコンポーネントのオプションを定義できるようにするマクロ。
++
+[source,vue]
+----
+<script setup>
+defineOptions({
+  name: 'MyCustomButton',
+  inheritAttrs: false // ルート要素に属性を自動継承しない
+});
+</script>
+----
+
+withDefaults::
++
+defineProps で TypeScript の型ベース定義を使う際に props のデフォルト値を設定するためのヘルパーマクロ。
++
+[source,vue]
+----
+<script setup>
+interface Props {
+  message: string;
+  delay?: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  message: 'Hello',
+  delay: 200 // デフォルト値を設定
+});
+</script>
+----
+
+defineSlots (主にTypeScript用)::
++
+コンポーネントが受け入れるスロットとその props の型を定義する。
+これによりスロット利用時の型チェックが強化される。
++
+[source,vue]
+----
+<script setup lang="ts">
+// スロットの型を定義
+defineSlots<{
+  default(props: { item: string }): any;
+  header(): any;
+}>();
+</script>
+----
+
+ref によるリアクティブな変数について::
+* script 内で参照する場合は `.value` が必要
+* template 内で参照する場合は自動的にアンパックするので value は不要

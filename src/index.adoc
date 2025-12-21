@@ -6,6 +6,7 @@ layout: "layouts/index.njk"
 * link:/nix[*nix tips]
 * link:/python[python knowledge]
 * link:/php[php knowledge]
+* link:/vue[vue.js knowledge]
 * link:/ubuntu[ubuntu tips]
 * link:/5w2h[5w2h]
 * link:/unittest-cheatsheet[unittest-cheatsheet]

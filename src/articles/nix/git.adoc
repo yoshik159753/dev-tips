@@ -1,5 +1,35 @@
 == git
 
+.switch/restore
+[horizontal]
+switch:: ブランチの操作
+restore:: 編集したりステージに載せたファイルの操作
+
+.switch/restore
+|===
+|操作 |従来のコマンド |新しいコマンド
+
+|ブランチを切り替える
+|`git checkout main`
+|`git switch main`
+
+|ブランチを作って切り替える
+|`git checkout -b new-branch`
+|`git switch -c new-branch`
+
+|ファイルの変更を破棄する
+|`git checkout -- file.txt`
+|`git restore file.txt`
+
+|全ファイルの変更を破棄する
+|`git checkout .`
+|`git restore .`
+
+|ステージングを解除する
+|`git reset HEAD file.txt`
+|`git restore --staged file.txt`
+|===
+
 [source,bash]
 .tag関係
 ----
