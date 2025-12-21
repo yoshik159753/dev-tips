@@ -5,6 +5,12 @@ layout: "layouts/contents.njk"
 :icons: font
 :source-highlighter: highlightjs
 
+== ノートPCの蓋を開/閉したときの電源管理
+
+ノートPCの蓋を閉めてもサスペンドにしないためには `/etc/systemd/logind.conf` の `HandleLidSwitch` を `ignore` に設定する。
+
+TIP: Lid スイッチはノートPCの蓋の開け閉めを検知するセンサーのこと。
+
 == us キーボードを使う
 
 === キーボードの設定
