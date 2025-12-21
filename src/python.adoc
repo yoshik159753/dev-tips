@@ -5,6 +5,8 @@ layout: "layouts/contents.njk"
 :icons: font
 :source-highlighter: highlightjs
 
+include::articles/python/built-in-functions.adoc[]
+
 include::articles/python/taskrunner.adoc[]
 
 include::articles/python/for.adoc[]
