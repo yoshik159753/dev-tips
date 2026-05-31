@@ -1,5 +1,99 @@
 == python
 
+=== uv
+
+https://docs.astral.sh/uv/[uv]
+
+[source,bash]
+----
+# インストール可能な Python バージョン一覧
+uv python list
+# Python をインストール
+uv python install 3.12
+# インストール済みの Python 一覧
+uv python list --only-installed
+# 特定バージョンを固定 (pyenv local 相当。 .python-version を生成する)
+uv python pin 3.12
+
+# プロジェクトを新規作成
+uv init my-project
+# 既存ディレクトリを初期化
+uv init
+
+# パッケージのインストール(複数の場合はスペース区切り)
+uv add requests flask
+# バージョン指定
+uv add "requests==2.28.0"       # 完全一致
+uv add "requests>=2.0,<3.0"     # 範囲指定
+uv add "requests~=2.28"         # メジャー固定 (>=2.28, <3)
+uv add "requests~=2.28.0"       # マイナー固定 (>=2.28.0, <2.29)
+# 開発用パッケージのインストール
+uv add --dev pytest
+# パッケージの削除
+uv remove requests
+
+# 仮想環境の削除 (専用コマンドはなく .venv を直接削除)
+rm -rf .venv
+
+# pyproject.toml をもとに依存関係を解決し uv.lock を更新してインストール
+uv sync
+# uv.lock をもとに厳密にインストール (lock の更新なし。 CI 環境など)
+uv sync --frozen
+# 開発用パッケージを除外 (--frozen と組み合わせ可)
+uv sync --no-dev
+uv sync --frozen --no-dev
+
+# lock ファイルの更新
+uv lock --upgrade
+# パッケージを指定してアップデート
+uv lock --upgrade-package requests
+
+# 仮想環境でコマンドを実行
+uv run python script.py
+uv run pytest
+
+# pyproject.toml の [project.scripts] に定義したコマンドを実行
+# 例: [project.scripts]/n my-app = "my_package.main:main"
+uv run my-app
+
+# インストールせずにツールを一時実行 (pipx run 相当)
+uvx ruff check .
+uvx black .
+
+# ツールとしてグローバルインストール (pipx install 相当)
+uv tool install ruff
+----
+
+PEP 723 インラインスクリプト::
++
+--
+スクリプトファイル単体で依存パッケージを管理できる。
+
+[source,bash]
+----
+# スクリプトファイルを初期化 (ファイル冒頭にメタデータブロックを追記)
+uv init --script script.py
+
+# スクリプトに依存パッケージを追加
+uv add --script script.py requests
+
+# スクリプトを実行 (依存パッケージが自動でインストールされる)
+uv run script.py
+----
+
+[source,python]
+.スクリプト内のメタデータ例
+----
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["requests"]
+# ///
+
+import requests
+print(requests.get("https://example.com").status_code)
+----
+--
+
 === poetry
 
 https://python-poetry.org/docs/[poetry]
