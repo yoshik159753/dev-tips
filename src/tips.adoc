@@ -1,0 +1,31 @@
+---
+layout: "layouts/contents.njk"
+---
+= tips
+:icons: font
+:source-highlighter: highlight.js
+
+== github
+
+=== 鍵指定でアカウント疎通確認
+
+[source,bash]
+----
+ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes -F /dev/null -T git@github.com
+----
+
+[horizontal]
+`-i`:: 鍵を指定
+`-o IdentitiesOnly=yes`:: `-i` で指定したアカウントのみを指定(やらないと他の鍵情報も送信するらしい)
+`-F /dev/null`:: ssh の config を無効化 (やらないと他の鍵情報も送信するらしい)
+
+=== とりあえず設定しておく系
+
+マージ済みのブランチを自動削除する設定（整理整頓）::
+* 設定場所: `Settings` > `General` を開き、下の方にある `Pull Requests` セクションへ。
+* やること: **「Automatically delete head branches」** にチェックを入れる
+`main` ブランチの保護::
+* 設定場所: `Settings` > `Branches` を開き、`Branch protection rules`（または `Rulesets`）を追加する
+* やること: 対象ブランチ名に `main` と入力し、以下の項目にチェックを入れます
+** 「Require a pull request before merging」: `main` に直接Pushすることを禁止し、必ずプルリクエストを経由させる
+** 「Do not allow bypassing the above settings」: 管理者（あなた）であっても、このルールを迂回して直接 Push できないようにする
