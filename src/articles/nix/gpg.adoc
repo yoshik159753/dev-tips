@@ -13,8 +13,12 @@ gpg --list-secret-keys
 
 # 暗号化
 gpg --encrypt --armor -u user-id secret.txt
-# 復号化
+# 復号化(標準出力に出力)
 gpg --decrypt secret.txt.asc
+# 復号化(ファイルに出力)
+gpg --decrypt secret.txt.asc --output secret.txt
+# 復号化(tar の展開)
+gpg --decrypt secrets.tar.gpg | tar -xf -
 ----
 
 [TIP]
