@@ -1,0 +1,50 @@
+== fwupdmgr(firmware update manager)
+
+ファームウェアの更新。
+
+[source,bash]
+.基本
+----
+# ファームウェア情報の更新
+sudo fwupdmgr refresh --force
+
+# アップデートの確認
+sudo fwupdmgr get-updates
+
+# アップデートの適用
+sudo fwupdmgr update
+----
+
+[source,bash]
+.その他
+----
+# 認識しているデバイスの一覧
+fwupdmgr get-devices
+
+# デバイスの詳細情報
+fwupdmgr get-details <ファイルパス>
+
+# 過去の更新履歴
+fwupdmgr get-history
+
+# あるデバイスに対して利用可能なリリース一覧
+fwupdmgr get-releases <デバイスID>
+
+# ローカルの .cab ファイルからインストール
+sudo fwupdmgr install <ファイルパス>
+
+# 1つ前のバージョンへダウングレード
+sudo fwupdmgr downgrade
+
+# 登録済みのリモート(LVFSなど)一覧
+fwupdmgr get-remotes
+
+# リモートの有効化/無効化
+sudo fwupdmgr enable-remote lvfs
+sudo fwupdmgr disable-remote lvfs
+
+# ファームウェアの署名検証
+fwupdmgr verify
+----
+
+TIP: 参照系は sudo 不要
