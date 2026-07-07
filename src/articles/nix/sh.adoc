@@ -1,8 +1,6 @@
 == sh
 
-=== Task Runner
-
-.全体を表示
+.Task Runner
 [%collapsible]
 ====
 

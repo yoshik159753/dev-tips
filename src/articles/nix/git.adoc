@@ -121,3 +121,73 @@ else
 fi
 done
 ----
+
+[source,bash]
+.不要ブランチの一括削除
+----
+# ベースブランチに移動して最新化
+git switch main
+git pull
+
+# dry-run
+git branch --merged | grep -vE '^\*|main|master|develop'
+
+# 一括削除コマンドを実行
+git branch --merged | grep -vE '^\*|main|master|develop' | xargs git branch -d
+
+# リモートで消えたブランチのローカル追跡情報を削除（prune）
+git fetch -p
+----
+
+[source,bash]
+.clean
+----
+# dry-run
+git clean -nd
+
+# 実行
+git clean -fd
+----
+
+clean::
++
+--
+[horizontal]
+`-n`::: dry-run（削除対象を表示するだけで実際には削除しない）
+`-f`::: 強制削除（untracked ファイルを削除）
+`-d`::: ディレクトリも対象に含める
+--
+
+[source,bash]
+.diff
+----
+# 特定のブランチやコミット間のステータスを見る場合（例：mainとfeatureブランチ）
+git diff --name-status main feature
+
+# M  src/foo.ts    # Modified
+# A  src/bar.ts    # Added
+# D  src/baz.ts    # Deleted
+# R  old → new     # Renamed
+# C  src/copy.ts   # Copied
+----
+
+[source,bash]
+.新しくプロジェクトに入った人がリポジトリの現状を素早く把握するためのGitコマンド5選
+----
+# 過去1年間で最も変更されたファイル20個
+git log --format=format: --name-only --since="1 year ago" | sort | uniq -c | sort -nr | head -20
+
+# 誰がコードを構築していったのか
+git shortlog -sn --no-merges
+
+# バグはどこに集まっているのか
+git log -i -E --grep="fix|bug|broken" --name-only --format='' | sort | uniq -c | sort -nr | head -20
+
+# プロジェクトは加速しているのか、停滞しているのか
+git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c
+
+# どれくらいの頻度で炎上しているか
+git log --oneline --since="1 year ago" | grep -iE 'revert|hotfix|emergency|rollback'
+
+# by: https://gigazine.net/news/20260410-git-command-before-reading-code/
+----
