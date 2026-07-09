@@ -4,15 +4,42 @@ https://github.com/nvm-sh/nvm[nvm]
 
 [source,bash]
 ----
-# 利用可能なすべての Node.js のバージョンをリスト表示
+# 現在アクティブなバージョン
+nvm current
+
+# リモート（公式）にあるバージョンをすべて表示
+nvm ls-remote
+# LTS（安定版）だけを絞り込んで表示したい場合
+nvm ls-remote --lts
+
+# ローカルで利用可能なすべての Node.js のバージョンをリスト表示
 nvm ls
 
-# 現在のシェルで特定バージョンの Node.js を使用する
-nvm use 16
+# 現在のバージョンを .nvmrc に記録
+node -v > .nvmrc
+# または直接バージョンを書く
+echo "20" > .nvmrc
 
 # 特定のバージョンの Node.js をインストール
 nvm install 12
+# nvmrc をもとにインストール
+nvm install
+
+# 現在のシェルで特定バージョンの Node.js を使用する
+nvm use 16
+# nvmrc をもとに切り替える
+nvm use
 
 # 適用されている Node.js のバージョン確認は Node.js 側で確認
 node -v
 ----
+
+[WARNING]
+.nvmrc
+====
+.nvmrc は自動で作成されない。
+手動で生成する必要がある。
+
+.nvmrc の自動適用は下記のシェルを参照。
+https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file
+====
