@@ -5,8 +5,15 @@
 ----
 # `cssfile` には github のスタイルを適用するのがおすすめ
 # ref. https://gist.githubusercontent.com/andyferra/2554919/raw/10ce87fe71b23216e3075d5648b8b9e56f7758e1/github.css
-pandoc $srcmd -f markdown -t html5 -s -c $cssfile -o $destpdf
+pandoc $srcmd -f markdown -t html5 -s -c $cssfile --pdf-engine=weasyprint -o $destpdf
 ----
+
+[horizontal]
+`-f`:: `--from` の略。入力フォーマット（例: `markdown`, `html`）
+`-t`:: `--to` の略。変換先フォーマット（例: `html5`, `docx`）。`.pdf` 拡張子で出力する場合は `html5` などを指定し PDF エンジンが変換する
+`-s`:: スタンドアロン文書として出力（`<html>` タグや `<head>` を含む完全な文書。省くと `<body>` タグの中身のみになるので `<link>` タグが適用されない）
+`-c`:: 適用する CSS ファイルのパスまたは URL
+`-o`:: 出力ファイルのパス
 
 [source,bash]
 .md を docx への変換
