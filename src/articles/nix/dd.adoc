@@ -1,5 +1,9 @@
 == dd
 
+"dd はファイルの変換とコピーを主な目的とする コアユーティリティ です。
+cp と同様にデフォルトでは dd はファイルのビットごとのコピーを作成しますが、低レベルの I/O フロー制御機能を備えています。"
+-- https://wiki.archlinux.jp/index.php/Dd
+
 [source,bash]
 .ディスクの完全消去
 ----
@@ -20,7 +24,7 @@ dd if=/dev/zero of=/dev/sdX bs=4096 status=progress
 # 対象のデバイスを確認
 sudo lsblk -p
 # zip を展開して書き込み
-unzip -p 2020-12-02-raspios-buster-armhf-lite.zip | sudo dd bs=4M of=/dev/sdb conv=fsync status=progress
+unzip -p 2020-12-02-raspios-buster-armhf-lite.zip | sudo dd bs=4M of=/dev/sdb conv=fdatasync status=progress
 ----
 
 [source,bash]
@@ -31,5 +35,9 @@ sudo lsblk -p
 sudo fdisk -l
 
 # 書き込み
-sudo dd if=./ubuntu-ja-23.10-desktop-legacy-amd64.iso of=/dev/sda bs=4M conv=fsync status=progress
+sudo dd if=./ubuntu-ja-23.10-desktop-legacy-amd64.iso of=/dev/sda bs=4M conv=fdatasync status=progress
 ----
+
+.conv
+`conv=fdatasync`:: ファイルデータのみを書き込む
+`conv=fsync`:: ファイルデータとメタデータ（最終更新日時やアクセス権などのファイル属性）の両方を書き込むため fdatasync に比べて低速
