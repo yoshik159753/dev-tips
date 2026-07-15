@@ -140,6 +140,13 @@ git fetch -p
 ----
 
 [source,bash]
+.origin/main からの全差分を新しいコミットで打ち消す
+----
+git revert origin/main..HEAD --no-commit
+git commit -m "revert to origin/main state"
+----
+
+[source,bash]
 .clean
 ----
 # dry-run
