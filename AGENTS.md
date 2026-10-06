@@ -44,3 +44,17 @@ npm run build
 - **新しい記事**: ファイル作成後、対応するカテゴリページに `include::articles/{category}/新ファイル.adoc[]` を追加する
 - **新しいカテゴリ**: `src/{category}.adoc` を作成して Front Matter で `layout: "layouts/contents.njk"` を指定し、さらに `src/index.adoc` のリンク一覧に `link:/{category}[...]` を追加する (トップページは手動管理のリンク集)
 - カテゴリページ共通の AsciiDoc 属性: `:icons: font` (Font Awesomeアイコン)、`:source-highlighter: highlightjs`、`:prewrap!:` (コードの自動折り返し無効)
+
+## プルリクエストの作成 (`@claude` など自動実行時)
+
+- 作業内容をコミットして `claude/` で始まるブランチにプッシュしたあと、**必ずドラフトPRとして作成する**
+- PR作成コマンドは、フラグの順序を固定して実行する (ワークフローの許可が前方一致のため、順序が違うと拒否される)
+
+  ```bash
+  gh pr create --draft --title "..." --body "..."
+  ```
+
+- 通常PR (`--draft` なし) は作成しない。レビュー可能になった時点で人が "Ready for review" にする
+- タイトルと本文は日本語で書く。本文には「変更内容」と「確認方法」を含める
+- `main` へ直接プッシュしない
+- `.github/workflows/` 配下は、依頼で明示されない限り変更しない
