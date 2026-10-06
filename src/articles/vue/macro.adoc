@@ -16,9 +16,16 @@ const props = defineProps({
   }
 });
 
-// TypeScriptでの型ベース定義
+</script>
+----
++
+TypeScript の場合は型引数で型ベースに定義する。
++
+[source,vue]
+----
+<script setup lang="ts">
 const props = defineProps<{
-  message: string,
+  message: string
   count?: number
 }>();
 </script>
@@ -32,6 +39,22 @@ defineEmits::
 ----
 <script setup>
 const emit = defineEmits(['updateCount', 'submitForm']);
+
+function handleClick() {
+  emit('updateCount', 1);
+}
+</script>
+----
++
+TypeScript の場合は型引数でイベント名と引数の型を定義する (Vue 3.3+ の短縮構文)。
++
+[source,vue]
+----
+<script setup lang="ts">
+const emit = defineEmits<{
+  updateCount: [value: number]
+  submitForm: [name: string, age: number]
+}>();
 
 function handleClick() {
   emit('updateCount', 1);
@@ -59,6 +82,28 @@ defineExpose({
 });
 </script>
 ----
++
+TypeScript の場合、`defineExpose` 自体に型引数はない。
+親側では `InstanceType` で公開された型を参照する。
++
+[source,vue]
+----
+<!-- 子: Child.vue -->
+<script setup lang="ts">
+defineExpose({
+  openModal: (): void => { /* ... */ }
+});
+</script>
+
+<!-- 親 -->
+<script setup lang="ts">
+import { ref } from 'vue';
+import Child from './Child.vue';
+
+const child = ref<InstanceType<typeof Child> | null>(null);
+child.value?.openModal();
+</script>
+----
 
 defineModel (Vue 3.4+)::
 +
@@ -79,6 +124,18 @@ function update() {
 }
 </script>
 ----
++
+TypeScript の場合は型引数で値の型を指定する。
++
+[source,vue]
+----
+<script setup lang="ts">
+const model = defineModel<string>();
+const count = defineModel<number>('count', { default: 0 });
+// 必須にする場合
+const title = defineModel<string>('title', { required: true });
+</script>
+----
 
 defineOptions (Vue 3.3+)::
 +
@@ -93,14 +150,27 @@ defineOptions({
 });
 </script>
 ----
++
+TypeScript の場合も書き方は同じ (`lang="ts"` を付けるだけ)。
++
+[source,vue]
+----
+<script setup lang="ts">
+defineOptions({
+  name: 'MyCustomButton',
+  inheritAttrs: false
+});
+</script>
+----
 
 withDefaults::
 +
 defineProps で TypeScript の型ベース定義を使う際に props のデフォルト値を設定するためのヘルパーマクロ。
+TypeScript 専用。
 +
 [source,vue]
 ----
-<script setup>
+<script setup lang="ts">
 interface Props {
   message: string;
   delay?: number;

@@ -1,0 +1,94 @@
+== ディレクティブ
+
+`v-` から始まる特別な属性。式の値が変わると DOM に反映される。
+一部のディレクティブには省略形がある。
+
+[cols="2,2,5"]
+|===
+| ディレクティブ | 省略形 | 説明
+
+| `v-bind`
+| `:`
+| 属性や props に式の値をバインドする。 +
+`:src="imageUrl"` / `:class="{ active: isActive }"` / `v-bind="obj"` (オブジェクトの一括バインド)。
+属性名と変数名が同じ場合は `:id` と書ける (Vue 3.4+)
+
+| `v-on`
+| `@`
+| イベントリスナーを登録する。 +
+`@click="handleClick"` / `@submit.prevent="onSubmit"` (修飾子: `.prevent` `.stop` `.once` `.enter` など)
+
+| `v-slot`
+| `#`
+| 名前付きスロットやスコープ付きスロットを受け取る。 +
+`#header` / `#item="{ item }"` / `#default="props"`
+
+| `v-model`
+| なし
+| フォーム入力やコンポーネントの双方向バインディング。 +
+`v-model="text"` / `v-model:count="count"`。修飾子: `.trim` `.number` `.lazy`
+
+| `v-if` / `v-else-if` / `v-else`
+| なし
+| 条件が真のときだけ要素を描画する (偽のときは DOM から除去される)
+
+| `v-show`
+| なし
+| 要素の `display` を切り替える (DOM には残る)。`<template>` や `v-else` は使えない
+
+| `v-for`
+| なし
+| リストを繰り返し描画する。 +
+`v-for="item in items" :key="item.id"` / `v-for="(item, index) in items"`。`:key` を必ず指定する
+
+| `v-text`
+| なし
+| 要素の textContent を設定する。`{{ }}` と同等
+
+| `v-html`
+| なし
+| 要素の innerHTML を設定する。ユーザー入力を渡すと XSS の原因になるため信頼できる内容にのみ使う
+
+| `v-once`
+| なし
+| 一度だけ描画し、以降は更新しない
+
+| `v-pre`
+| なし
+| 要素内のコンパイルをスキップし、`{{ }}` をそのまま表示する
+
+| `v-memo`
+| なし
+| 依存配列の値が変わらない限り、要素のサブツリーの更新をスキップする
+
+| `v-cloak`
+| なし
+| コンパイル完了まで要素を隠すために使う (`[v-cloak] { display: none }` と併用)
+|===
+
+[source,vue]
+----
+<template>
+  <!-- v-bind (:) / v-on (@) -->
+  <button :disabled="isLoading" @click="submit">送信</button>
+
+  <!-- v-if / v-else -->
+  <p v-if="items.length === 0">データがありません</p>
+  <ul v-else>
+    <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+  </ul>
+
+  <!-- v-model -->
+  <input v-model.trim="keyword" />
+
+  <!-- v-slot (#) -->
+  <MyList>
+    <template #header>タイトル</template>
+    <template #item="{ item }">{{ item.name }}</template>
+  </MyList>
+</template>
+----
+
+v-if と v-for を同じ要素に書かない::
+Vue 3 では `v-if` の方が優先度が高く、`v-for` の変数を参照できない。
+`<template v-for>` で囲むか、算出プロパティで絞り込む。
