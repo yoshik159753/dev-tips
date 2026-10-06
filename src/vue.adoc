@@ -7,4 +7,6 @@ layout: "layouts/contents.njk"
 
 include::articles/vue/macro.adoc[]
 
+include::articles/vue/directive.adoc[]
+
 include::articles/vue/ref.adoc[]
