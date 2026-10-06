@@ -54,7 +54,12 @@ npm run build
   gh pr create --draft --title "..." --body "..."
   ```
 
+- 「Create PR」リンクを貼るだけで終わらせない。実際にドラフトPRを作成し、そのPRのURLをコメントに載せる
 - 通常PR (`--draft` なし) は作成しない。レビュー可能になった時点で人が "Ready for review" にする
 - タイトルと本文は日本語で書く。本文には「変更内容」と「確認方法」を含める
+- PR本文は `gh pr edit` が許可されていないため、作成時に完成させる。次の点に注意する
+  - 本文中に `#` で始まる行 (Markdown見出し) を書かない。見出しは `**変更内容**` のように太字にする (権限チェックで拒否されるため)
+  - issueを閉じる場合は、`Closes #N` ではなく URL形式で書く: `Closes https://github.com/yoshik159753/dev-tips/issues/N`
+  - ビルドや動作確認を実施できなかった場合は、その旨を本文に書く
 - `main` へ直接プッシュしない
 - `.github/workflows/` 配下は、依頼で明示されない限り変更しない
