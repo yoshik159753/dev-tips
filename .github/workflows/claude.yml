@@ -46,5 +46,8 @@ jobs:
           # Optional: Add claude_args to customize behavior and configuration
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
-          # claude_args: '--allowed-tools Bash(gh pr *)'
+          # ドラフトPRの作成だけを許可する (通常PRは作らせない)。
+          # 許可パターンは前方一致のため、`--draft` を先頭に付ける運用は AGENTS.md に記載している。
+          claude_args: |
+            --allowedTools "Bash(gh pr create --draft:*),Bash(gh pr view:*)"
 

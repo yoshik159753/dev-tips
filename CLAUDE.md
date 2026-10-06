@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+エージェント共通の作業ルール (PR作成の手順など) は @AGENTS.md に記載している。
+
 ## プロジェクト概要
 
 開発者向けTipsを集約したドキュメントサイト。11ty (Eleventy) で AsciiDoc を HTML に変換して静的サイトを生成する。テストやリンタは無い。
