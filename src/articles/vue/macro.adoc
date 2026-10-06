@@ -15,12 +15,33 @@ const props = defineProps({
     default: 0
   }
 });
-
-// TypeScriptでの型ベース定義
+</script>
+----
++
+TypeScript の場合は型引数で型ベース定義ができる。
+`?` を付けると省略可能な props になる。
++
+[source,vue]
+----
+<script setup lang="ts">
 const props = defineProps<{
   message: string,
   count?: number
 }>();
+</script>
+----
++
+`interface` に切り出してもよい。デフォルト値は後述の `withDefaults` で設定する。
++
+[source,vue]
+----
+<script setup lang="ts">
+interface Props {
+  message: string;
+  count?: number;
+}
+
+const props = defineProps<Props>();
 </script>
 ----
 
@@ -36,6 +57,25 @@ const emit = defineEmits(['updateCount', 'submitForm']);
 function handleClick() {
   emit('updateCount', 1);
 }
+</script>
+----
++
+TypeScript の場合は型引数でイベント名と引数の型を定義する。
++
+[source,vue]
+----
+<script setup lang="ts">
+// 呼び出しシグネチャ形式
+const emit = defineEmits<{
+  (e: 'updateCount', value: number): void;
+  (e: 'submitForm'): void;
+}>();
+
+// 名前付きタプル形式 (Vue 3.3+)。こちらの方が簡潔
+const emit2 = defineEmits<{
+  updateCount: [value: number];
+  submitForm: [];
+}>();
 </script>
 ----
 
@@ -59,6 +99,42 @@ defineExpose({
 });
 </script>
 ----
++
+TypeScript の場合、`defineExpose` 自体には型引数を渡さない。
+公開した内容は引数のオブジェクトから推論される。
+親側では `InstanceType` で子コンポーネントのインスタンス型を取得して ref に指定する。
++
+[source,vue]
+----
+<!-- 子コンポーネント (Modal.vue) -->
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const internalValue = ref(0);
+
+defineExpose({
+  openModal: (): void => {
+    internalValue.value = 100;
+  }
+});
+</script>
+
+<!-- 親コンポーネント -->
+<script setup lang="ts">
+import { ref } from 'vue';
+import Modal from './Modal.vue';
+
+const modal = ref<InstanceType<typeof Modal> | null>(null);
+
+function open() {
+  modal.value?.openModal();
+}
+</script>
+
+<template>
+  <Modal ref="modal" />
+</template>
+----
 
 defineModel (Vue 3.4+)::
 +
@@ -79,6 +155,23 @@ function update() {
 }
 </script>
 ----
++
+TypeScript の場合は型引数で値の型を指定する。
+名前付きの場合は第1引数に名前、第2引数にオプション (`default` や `required`) を指定できる。
++
+[source,vue]
+----
+<script setup lang="ts">
+// Ref<string | undefined>
+const model = defineModel<string>();
+
+// Ref<string> (required を付けると undefined を含まない)
+const title = defineModel<string>('title', { required: true });
+
+// Ref<number> (default があれば undefined を含まない)
+const count = defineModel<number>('count', { default: 0 });
+</script>
+----
 
 defineOptions (Vue 3.3+)::
 +
@@ -93,14 +186,27 @@ defineOptions({
 });
 </script>
 ----
++
+TypeScript の場合も書き方は同じ。`lang="ts"` を付けるだけでよい。
++
+[source,vue]
+----
+<script setup lang="ts">
+defineOptions({
+  name: 'MyCustomButton',
+  inheritAttrs: false
+});
+</script>
+----
 
 withDefaults::
 +
 defineProps で TypeScript の型ベース定義を使う際に props のデフォルト値を設定するためのヘルパーマクロ。
+TypeScript 専用 (`lang="ts"` が必要)。
 +
 [source,vue]
 ----
-<script setup>
+<script setup lang="ts">
 interface Props {
   message: string;
   delay?: number;
@@ -112,11 +218,24 @@ const props = withDefaults(defineProps<Props>(), {
 });
 </script>
 ----
++
+Vue 3.5+ では、props の分割代入でデフォルト値を書く方法でも同じことができる (リアクティビティも維持される)。
++
+[source,vue]
+----
+<script setup lang="ts">
+const { message = 'Hello', delay = 200 } = defineProps<{
+  message?: string;
+  delay?: number;
+}>();
+</script>
+----
 
 defineSlots (主にTypeScript用)::
 +
 コンポーネントが受け入れるスロットとその props の型を定義する。
 これによりスロット利用時の型チェックが強化される。
+JavaScript では型を定義できないため、TypeScript での利用が前提となる。
 +
 [source,vue]
 ----
